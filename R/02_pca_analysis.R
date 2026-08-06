@@ -1,7 +1,7 @@
 # PCA on the 2021 field: offense, defense, and both together.
 #
 # Keeps the three-way structure of the 2021 original. Two things change:
-# princomp() becomes prcomp(), and the "biplots" are now actual biplots —
+# princomp() becomes prcomp(), and the "biplots" are now actual biplots;
 # the original plotted scores with team labels and no loading vectors.
 
 suppressPackageStartupMessages({
@@ -40,9 +40,9 @@ save_biplot <- function(pca, title, file, top_vars = NULL) {
   ggsave(file.path(FIGURE_DIR, file), p, width = 10, height = 8, dpi = 200)
 }
 
-save_biplot(pca_offense,  "2021 field — offensive profile", "biplot_offense.png")
-save_biplot(pca_defense,  "2021 field — defensive profile", "biplot_defense.png")
-save_biplot(pca_combined, "2021 field — offense and defense", "biplot_combined.png",
+save_biplot(pca_offense,  "2021 field: offensive profile", "biplot_offense.png")
+save_biplot(pca_defense,  "2021 field: defensive profile", "biplot_defense.png")
+save_biplot(pca_combined, "2021 field: offense and defense", "biplot_combined.png",
             top_vars = 15)
 
 RECORD_VARS <- c("W", "L", "Pct_W_L")
@@ -57,7 +57,7 @@ save_corrplot <- function(pca, vars, file) {
               as.matrix(cbind(NCAA_ALL[RECORD_VARS], pca$x[, 1:2])))
   rows <- seq_along(stats)
   cols <- length(stats) + seq_len(length(RECORD_VARS) + 2)
-  # Only five columns, so keep the canvas narrow — a wide one just pads the
+  # Only five columns, so keep the canvas narrow. A wide one just pads the
   # sides with white and shrinks the circles once the page scales it down.
   png(file.path(FIGURE_DIR, file), width = 760, height = 1500, res = 150)
   corrplot(cr$r[rows, cols], method = "circle", type = "full",
@@ -104,14 +104,14 @@ widget <- plotly::plot_ly(
     # No title and tight margins: the page embeds this in a figure that
     # supplies its own caption.
     margin = list(l = 0, r = 0, b = 0, t = 0),
-    scene = list(xaxis = list(title = "PC1 — offense"),
-                 yaxis = list(title = "PC2 — tempo"),
-                 zaxis = list(title = "PC3 — opponent shooting")))
+    scene = list(xaxis = list(title = "PC1: offense"),
+                 yaxis = list(title = "PC2: tempo"),
+                 zaxis = list(title = "PC3: opponent shooting")))
 
 # selfcontained = FALSE writes pca3d_files/ next to the html; bundling it into a
 # single file needs pandoc, which this pipeline otherwise has no use for.
 htmlwidgets::saveWidget(widget, file.path(DOCS_DIR, "pca3d.html"),
-                        selfcontained = FALSE, title = "2021 NCAA field — 3D PCA")
+                        selfcontained = FALSE, title = "2021 NCAA field: 3D PCA")
 
 eig_combined <- get_eig(pca_combined)
 write.csv(eig_combined, file.path(PROCESSED_DIR, "pca_eigenvalues.csv"))

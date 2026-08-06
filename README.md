@@ -1,14 +1,14 @@
 # March Madness 2021: Two Axes and a Scatterplot
 
-Before the ensemble and the 132,134 matchup probabilities, there was this: seventeen spreadsheets, one principal component analysis, and a chart I read with my eyeballs to pick winners. It was the first model I ever built. I never scored it. Five years later, I finally did.
+Before the ensemble and the 132,134 matchup probabilities, there was this: four days, seventeen spreadsheets, and a principal component analysis I had just learned to run. First year of a statistics degree, brand new to R, and convinced I was onto something. Five years later I wrote the rule down as code and finally scored it.
 
 **The full story, charts included, lives [here](https://cedpaul13.github.io/March_Madness_2021/).** English and French.
 
 Worth a click for:
 
 * Gonzaga and Baylor ranked first and third out of 68 teams, weeks before they met in the final
-* Nine correct upset calls, including Oral Roberts over Ohio State — the 15-over-2 that torched everyone's bracket
-* A final record that still lost to just picking the better seed, and the reason why
+* Nine correct upset calls, including the Oral Roberts 15-over-2 that torched everyone's bracket
+* A reconstruction of the rule that still loses to simply picking the better seed, and the reason why
 * An axis I called "defense" for five years that turns out to measure tempo
 
 ---
@@ -18,7 +18,7 @@ Worth a click for:
 * [Post-mortem: what those axes were actually made of](./POST_MORTEM.md)
 * [The original 2021 script, untouched](./archives/NCAA_2021_original.R)
 * [Where the bracket results came from](./data/bracket/README.md)
-* [March Madness 2026](https://cedpaul13.github.io/March_Madness_2026/) — where all of this ended up
+* [March Madness 2026](https://cedpaul13.github.io/March_Madness_2026/), where all of this ended up
 
 ---
 
