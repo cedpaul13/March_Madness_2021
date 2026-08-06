@@ -1,0 +1,67 @@
+"round","day_num","region","winner","seed_w","score_w","loser","seed_l","score_l","overtime","odi_winner","odi_loser","model_pick","edge","correct","upset"
+"First Four",136,"East","Texas Southern",16,60,"Mount St. Mary's",16,52,0,-6.81258022151985,-5.08199469532546,"Mount St. Mary's",1.73,FALSE,FALSE
+"First Four",136,"East","UCLA",11,86,"Michigan St.",11,80,1,-0.828526378726733,-5.17524185043655,"UCLA",4.35,TRUE,FALSE
+"First Four",136,"West","Norfolk St.",16,54,"App State",16,53,0,-3.43808486336385,-4.20229333323139,"Norfolk St.",0.76,TRUE,FALSE
+"First Four",136,"West","Drake",11,53,"Wichita St.",11,52,0,5.30434050844309,-3.68946945447605,"Drake",8.99,TRUE,FALSE
+"Round of 64",138,"East","Abilene Christian",14,53,"Texas",3,52,0,3.89425337956488,-1.27858243732943,"Abilene Christian",5.17,TRUE,TRUE
+"Round of 64",138,"East","UCLA",11,73,"BYU",6,62,0,-0.828526378726733,3.05309525768285,"BYU",3.88,FALSE,TRUE
+"Round of 64",138,"East","Maryland",10,63,"UConn",7,54,0,-2.16148357948712,-1.90473387036696,"UConn",0.26,FALSE,TRUE
+"Round of 64",138,"East","LSU",8,76,"St. Bonaventure",9,61,0,-2.86463610510221,0.55393543695571,"St. Bonaventure",3.42,FALSE,FALSE
+"Round of 64",138,"East","Colorado",5,96,"Georgetown",12,73,0,1.39247044583236,-6.26876674066982,"Colorado",7.66,TRUE,FALSE
+"Round of 64",138,"East","Florida St.",4,64,"UNC Greensboro",13,54,0,0.263593590576471,-2.42135771944515,"Florida St.",2.68,TRUE,FALSE
+"Round of 64",138,"East","Alabama",2,68,"Iona",15,55,0,-0.0622290878284613,-2.56309115887353,"Alabama",2.5,TRUE,FALSE
+"Round of 64",138,"East","Michigan",1,82,"Texas Southern",16,66,0,4.12692592713774,-6.81258022151985,"Michigan",10.94,TRUE,FALSE
+"Round of 64",137,"Midwest","Oregon St.",12,70,"Tennessee",5,56,0,-2.70450171185818,-1.24073340807623,"Tennessee",1.46,FALSE,TRUE
+"Round of 64",137,"Midwest","Syracuse",11,78,"San Diego St.",6,62,0,-1.85998147016015,2.66063284794451,"San Diego St.",4.52,FALSE,TRUE
+"Round of 64",137,"Midwest","Rutgers",10,60,"Clemson",7,56,0,-3.46771748490875,-0.980494736195861,"Clemson",2.49,FALSE,TRUE
+"Round of 64",137,"Midwest","Loyola Chicago",8,71,"Georgia Tech",9,60,0,6.76836751362461,2.00250424061741,"Loyola Chicago",4.77,TRUE,FALSE
+"Round of 64",137,"Midwest","Oklahoma St.",4,69,"Liberty",13,60,0,-3.51249886922171,8.39360707757725,"Liberty",11.91,FALSE,FALSE
+"Round of 64",137,"Midwest","West Virginia",3,84,"Morehead St.",14,67,0,-3.66826905792452,-2.0613938937033,"Morehead St.",1.61,FALSE,FALSE
+"Round of 64",137,"Midwest","Houston",2,87,"Cleveland St.",15,56,0,4.02691905364067,-2.83576956963341,"Houston",6.86,TRUE,FALSE
+"Round of 64",137,"Midwest","Illinois",1,78,"Drexel",16,49,0,2.63313676250143,0.800601363027063,"Illinois",1.83,TRUE,FALSE
+"Round of 64",137,"South","Oral Roberts",15,75,"Ohio St.",2,72,1,0.03677061252286,-0.605212144744706,"Oral Roberts",0.64,TRUE,TRUE
+"Round of 64",137,"South","North Texas",13,78,"Purdue",4,69,1,1.34223265232892,-2.39592369088679,"North Texas",3.74,TRUE,TRUE
+"Round of 64",137,"South","Wisconsin",9,85,"North Carolina",8,62,0,-0.965278750931322,-4.64469686636886,"Wisconsin",3.68,TRUE,TRUE
+"Round of 64",137,"South","Florida",7,75,"Virginia Tech",10,70,1,-3.362269890001,0.00735850341927358,"Virginia Tech",3.37,FALSE,FALSE
+"Round of 64",137,"South","Texas Tech",6,65,"Utah St.",11,53,0,-2.1851493894803,-0.610353929348837,"Utah St.",1.57,FALSE,FALSE
+"Round of 64",137,"South","Villanova",5,73,"Winthrop",12,63,0,2.29021143789886,2.76387728961807,"Winthrop",0.47,FALSE,FALSE
+"Round of 64",137,"South","Arkansas",3,85,"Colgate",14,68,0,-0.00934398323514696,6.62965990541132,"Colgate",6.64,FALSE,FALSE
+"Round of 64",137,"South","Baylor",1,79,"Hartford",16,55,0,8.06557272066271,-3.71667109298938,"Baylor",11.78,TRUE,FALSE
+"Round of 64",138,"West","Ohio",13,62,"Virginia",4,58,0,2.78714167351123,5.01555625798272,"Virginia",2.23,FALSE,TRUE
+"Round of 64",138,"West","Oklahoma",8,72,"Missouri",9,68,0,-2.40985132545379,-4.04641500711166,"Oklahoma",1.64,TRUE,FALSE
+"Round of 64",138,"West","Southern California",6,72,"Drake",11,56,0,-0.722045185773088,5.30434050844309,"Drake",6.03,FALSE,FALSE
+"Round of 64",138,"West","Creighton",5,63,"UC Santa Barbara",12,62,0,2.48913404591767,4.89106930266807,"UC Santa Barbara",2.4,FALSE,FALSE
+"Round of 64",138,"West","Kansas",3,93,"Eastern Wash.",14,84,0,-1.41882439441061,0.889146467377386,"Eastern Wash.",2.31,FALSE,FALSE
+"Round of 64",138,"West","Iowa",2,86,"Grand Canyon",15,74,0,3.63221366779871,1.45280721302411,"Iowa",2.18,TRUE,FALSE
+"Round of 64",138,"West","Gonzaga",1,98,"Norfolk St.",16,55,0,9.58791328797502,-3.43808486336385,"Gonzaga",13.03,TRUE,FALSE
+"Round of 32",140,"East","UCLA",11,67,"Abilene Christian",14,47,0,-0.828526378726733,3.89425337956488,"Abilene Christian",4.72,FALSE,FALSE
+"Round of 32",140,"East","Florida St.",4,71,"Colorado",5,53,0,0.263593590576471,1.39247044583236,"Colorado",1.13,FALSE,FALSE
+"Round of 32",140,"East","Alabama",2,96,"Maryland",10,77,0,-0.0622290878284613,-2.16148357948712,"Alabama",2.1,TRUE,FALSE
+"Round of 32",140,"East","Michigan",1,86,"LSU",8,78,0,4.12692592713774,-2.86463610510221,"Michigan",6.99,TRUE,FALSE
+"Round of 32",139,"Midwest","Oregon St.",12,80,"Oklahoma St.",4,70,0,-2.70450171185818,-3.51249886922171,"Oregon St.",0.81,TRUE,TRUE
+"Round of 32",139,"Midwest","Syracuse",11,75,"West Virginia",3,72,0,-1.85998147016015,-3.66826905792452,"Syracuse",1.81,TRUE,TRUE
+"Round of 32",139,"Midwest","Loyola Chicago",8,71,"Illinois",1,58,0,6.76836751362461,2.63313676250143,"Loyola Chicago",4.14,TRUE,TRUE
+"Round of 32",139,"Midwest","Houston",2,63,"Rutgers",10,60,0,4.02691905364067,-3.46771748490875,"Houston",7.49,TRUE,FALSE
+"Round of 32",139,"South","Oral Roberts",15,81,"Florida",7,78,0,0.03677061252286,-3.362269890001,"Oral Roberts",3.4,TRUE,TRUE
+"Round of 32",139,"South","Villanova",5,84,"North Texas",13,61,0,2.29021143789886,1.34223265232892,"Villanova",0.95,TRUE,FALSE
+"Round of 32",139,"South","Arkansas",3,68,"Texas Tech",6,66,0,-0.00934398323514696,-2.1851493894803,"Arkansas",2.18,TRUE,FALSE
+"Round of 32",139,"South","Baylor",1,76,"Wisconsin",9,63,0,8.06557272066271,-0.965278750931322,"Baylor",9.03,TRUE,FALSE
+"Round of 32",140,"West","Oregon",7,95,"Iowa",2,80,0,2.46366610498367,3.63221366779871,"Iowa",1.17,FALSE,TRUE
+"Round of 32",140,"West","Southern California",6,85,"Kansas",3,51,0,-0.722045185773088,-1.41882439441061,"Southern California",0.7,TRUE,TRUE
+"Round of 32",140,"West","Creighton",5,72,"Ohio",13,58,0,2.48913404591767,2.78714167351123,"Ohio",0.3,FALSE,FALSE
+"Round of 32",140,"West","Gonzaga",1,87,"Oklahoma",8,71,0,9.58791328797502,-2.40985132545379,"Gonzaga",12,TRUE,FALSE
+"Sweet 16",146,"East","UCLA",11,88,"Alabama",2,78,1,-0.828526378726733,-0.0622290878284613,"Alabama",0.77,FALSE,TRUE
+"Sweet 16",146,"East","Michigan",1,76,"Florida St.",4,58,0,4.12692592713774,0.263593590576471,"Michigan",3.86,TRUE,FALSE
+"Sweet 16",145,"Midwest","Oregon St.",12,65,"Loyola Chicago",8,58,0,-2.70450171185818,6.76836751362461,"Loyola Chicago",9.47,FALSE,TRUE
+"Sweet 16",145,"Midwest","Houston",2,62,"Syracuse",11,46,0,4.02691905364067,-1.85998147016015,"Houston",5.89,TRUE,FALSE
+"Sweet 16",145,"South","Arkansas",3,72,"Oral Roberts",15,70,0,-0.00934398323514696,0.03677061252286,"Oral Roberts",0.05,FALSE,FALSE
+"Sweet 16",145,"South","Baylor",1,62,"Villanova",5,51,0,8.06557272066271,2.29021143789886,"Baylor",5.78,TRUE,FALSE
+"Sweet 16",146,"West","Southern California",6,82,"Oregon",7,68,0,-0.722045185773088,2.46366610498367,"Oregon",3.19,FALSE,FALSE
+"Sweet 16",146,"West","Gonzaga",1,83,"Creighton",5,65,0,9.58791328797502,2.48913404591767,"Gonzaga",7.1,TRUE,FALSE
+"Elite Eight",148,"East","UCLA",11,51,"Michigan",1,49,0,-0.828526378726733,4.12692592713774,"Michigan",4.96,FALSE,TRUE
+"Elite Eight",147,"Midwest","Houston",2,67,"Oregon St.",12,61,0,4.02691905364067,-2.70450171185818,"Houston",6.73,TRUE,FALSE
+"Elite Eight",147,"South","Baylor",1,81,"Arkansas",3,72,0,8.06557272066271,-0.00934398323514696,"Baylor",8.07,TRUE,FALSE
+"Elite Eight",148,"West","Gonzaga",1,85,"Southern California",6,66,0,9.58791328797502,-0.722045185773088,"Gonzaga",10.31,TRUE,FALSE
+"Final Four",152,NA,"Baylor",1,78,"Houston",2,59,0,8.06557272066271,4.02691905364067,"Baylor",4.04,TRUE,FALSE
+"Final Four",152,NA,"Gonzaga",1,93,"UCLA",11,90,1,9.58791328797502,-0.828526378726733,"Gonzaga",10.42,TRUE,FALSE
+"Championship",154,NA,"Baylor",1,86,"Gonzaga",1,70,0,8.06557272066271,9.58791328797502,"Gonzaga",1.52,FALSE,FALSE

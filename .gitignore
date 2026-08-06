@@ -1,0 +1,13 @@
+# R session artifacts
+.Rhistory
+.RData
+.Rapp.history
+.Rproj.user/
+*.Rproj
+
+# macOS
+.DS_Store
+
+# Site build output — deployed to gh-pages by scripts/deploy_site.sh,
+# never committed to main.
+docs/

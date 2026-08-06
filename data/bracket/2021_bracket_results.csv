@@ -1,0 +1,67 @@
+"round","day_num","region","winner","seed_w","score_w","loser","seed_l","score_l","overtime"
+"First Four",136,"East","UCLA",11,86,"Michigan St.",11,80,1
+"First Four",136,"East","Texas Southern",16,60,"Mount St. Mary's",16,52,0
+"First Four",136,"West","Drake",11,53,"Wichita St.",11,52,0
+"First Four",136,"West","Norfolk St.",16,54,"App State",16,53,0
+"Round of 64",137,"Midwest","Illinois",1,78,"Drexel",16,49,0
+"Round of 64",137,"Midwest","Houston",2,87,"Cleveland St.",15,56,0
+"Round of 64",137,"Midwest","West Virginia",3,84,"Morehead St.",14,67,0
+"Round of 64",137,"Midwest","Oklahoma St.",4,69,"Liberty",13,60,0
+"Round of 64",137,"Midwest","Loyola Chicago",8,71,"Georgia Tech",9,60,0
+"Round of 64",137,"Midwest","Rutgers",10,60,"Clemson",7,56,0
+"Round of 64",137,"Midwest","Syracuse",11,78,"San Diego St.",6,62,0
+"Round of 64",137,"Midwest","Oregon St.",12,70,"Tennessee",5,56,0
+"Round of 64",137,"South","Baylor",1,79,"Hartford",16,55,0
+"Round of 64",137,"South","Arkansas",3,85,"Colgate",14,68,0
+"Round of 64",137,"South","Villanova",5,73,"Winthrop",12,63,0
+"Round of 64",137,"South","Texas Tech",6,65,"Utah St.",11,53,0
+"Round of 64",137,"South","Florida",7,75,"Virginia Tech",10,70,1
+"Round of 64",137,"South","Wisconsin",9,85,"North Carolina",8,62,0
+"Round of 64",137,"South","North Texas",13,78,"Purdue",4,69,1
+"Round of 64",137,"South","Oral Roberts",15,75,"Ohio St.",2,72,1
+"Round of 64",138,"East","Michigan",1,82,"Texas Southern",16,66,0
+"Round of 64",138,"East","Alabama",2,68,"Iona",15,55,0
+"Round of 64",138,"East","Florida St.",4,64,"UNC Greensboro",13,54,0
+"Round of 64",138,"East","Colorado",5,96,"Georgetown",12,73,0
+"Round of 64",138,"East","LSU",8,76,"St. Bonaventure",9,61,0
+"Round of 64",138,"East","Maryland",10,63,"UConn",7,54,0
+"Round of 64",138,"East","UCLA",11,73,"BYU",6,62,0
+"Round of 64",138,"East","Abilene Christian",14,53,"Texas",3,52,0
+"Round of 64",138,"West","Gonzaga",1,98,"Norfolk St.",16,55,0
+"Round of 64",138,"West","Iowa",2,86,"Grand Canyon",15,74,0
+"Round of 64",138,"West","Kansas",3,93,"Eastern Wash.",14,84,0
+"Round of 64",138,"West","Creighton",5,63,"UC Santa Barbara",12,62,0
+"Round of 64",138,"West","Southern California",6,72,"Drake",11,56,0
+"Round of 64",138,"West","Oklahoma",8,72,"Missouri",9,68,0
+"Round of 64",138,"West","Ohio",13,62,"Virginia",4,58,0
+"Round of 32",139,"Midwest","Houston",2,63,"Rutgers",10,60,0
+"Round of 32",139,"Midwest","Loyola Chicago",8,71,"Illinois",1,58,0
+"Round of 32",139,"Midwest","Syracuse",11,75,"West Virginia",3,72,0
+"Round of 32",139,"Midwest","Oregon St.",12,80,"Oklahoma St.",4,70,0
+"Round of 32",139,"South","Baylor",1,76,"Wisconsin",9,63,0
+"Round of 32",139,"South","Arkansas",3,68,"Texas Tech",6,66,0
+"Round of 32",139,"South","Villanova",5,84,"North Texas",13,61,0
+"Round of 32",139,"South","Oral Roberts",15,81,"Florida",7,78,0
+"Round of 32",140,"East","Michigan",1,86,"LSU",8,78,0
+"Round of 32",140,"East","Alabama",2,96,"Maryland",10,77,0
+"Round of 32",140,"East","Florida St.",4,71,"Colorado",5,53,0
+"Round of 32",140,"East","UCLA",11,67,"Abilene Christian",14,47,0
+"Round of 32",140,"West","Gonzaga",1,87,"Oklahoma",8,71,0
+"Round of 32",140,"West","Creighton",5,72,"Ohio",13,58,0
+"Round of 32",140,"West","Southern California",6,85,"Kansas",3,51,0
+"Round of 32",140,"West","Oregon",7,95,"Iowa",2,80,0
+"Sweet 16",145,"Midwest","Houston",2,62,"Syracuse",11,46,0
+"Sweet 16",145,"Midwest","Oregon St.",12,65,"Loyola Chicago",8,58,0
+"Sweet 16",145,"South","Baylor",1,62,"Villanova",5,51,0
+"Sweet 16",145,"South","Arkansas",3,72,"Oral Roberts",15,70,0
+"Sweet 16",146,"East","Michigan",1,76,"Florida St.",4,58,0
+"Sweet 16",146,"East","UCLA",11,88,"Alabama",2,78,1
+"Sweet 16",146,"West","Gonzaga",1,83,"Creighton",5,65,0
+"Sweet 16",146,"West","Southern California",6,82,"Oregon",7,68,0
+"Elite Eight",147,"Midwest","Houston",2,67,"Oregon St.",12,61,0
+"Elite Eight",147,"South","Baylor",1,81,"Arkansas",3,72,0
+"Elite Eight",148,"East","UCLA",11,51,"Michigan",1,49,0
+"Elite Eight",148,"West","Gonzaga",1,85,"Southern California",6,66,0
+"Final Four",152,NA,"Baylor",1,78,"Houston",2,59,0
+"Final Four",152,NA,"Gonzaga",1,93,"UCLA",11,90,1
+"Championship",154,NA,"Baylor",1,86,"Gonzaga",1,70,0
