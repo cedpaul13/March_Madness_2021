@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Two Axes and a Scatterplot · March Madness 2021</title>
-<meta name="description" id="metaDesc" content="My first prediction model had Gonzaga and Baylor first and third out of 68 teams. It also had a 13-seed second. Five years later I finally scored the thing, and found two bugs I never knew about.">
+<meta name="description" id="metaDesc" content="Three months into my first-ever statistics course on data analysis, I built my first data science project in four days, coding its functions from scratch and ingesting NCAA stats from manually downloaded CSVs.">
 <script>
 (function () {
   var t = null;
@@ -161,7 +161,6 @@
       display: none; position: absolute; top: 100%; left: 0; right: 0;
       flex-direction: column; align-items: stretch; gap: 0;
       background: var(--page); border-bottom: 1px solid var(--hairline);
-      box-shadow: 0 12px 20px -12px rgba(0,0,0,0.25);
     }
     .navlinks[data-open="true"] { display: flex; }
     .navlinks a {
@@ -295,7 +294,7 @@
   /* embedded 3D component view */
   .viz3d {
     position: relative; width: 100%; aspect-ratio: 4 / 3;
-    border: 1px solid var(--ring); border-radius: 8px; overflow: hidden;
+    border: 1px solid var(--ring); border-radius: 4px; overflow: hidden;
     background: #ffffff;
   }
   .viz3d iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
@@ -308,7 +307,7 @@
   }
   .wbar > div {
     border-radius: 3px; width: var(--w); position: relative;
-    background: linear-gradient(90deg, color-mix(in srgb, var(--seg) 100%, black 18%) 0%, var(--seg) 100%);
+    background: var(--seg);
     transition: width 0.7s cubic-bezier(.16,.84,.44,1);
   }
   .wbar[data-play="true"] > div { width: var(--w); }
@@ -332,7 +331,7 @@
     border: 1px solid var(--ring); border-radius: 3px; height: 18px; position: relative; overflow: visible;
   }
   .hbar-fill {
-    background: linear-gradient(90deg, color-mix(in srgb, var(--s1) 100%, black 18%) 0%, var(--s1) 100%);
+    background: var(--s1);
     border-radius: 3px; height: 100%; width: var(--w); position: relative;
     transition: width 0.9s cubic-bezier(.16,.84,.44,1);
   }
@@ -340,7 +339,7 @@
   .hbar-fill::after {
     content: ""; position: absolute; top: -3px; bottom: -3px; right: -1px; width: 3px;
     background: color-mix(in srgb, var(--s1) 100%, white 35%);
-    border-radius: 2px; box-shadow: 0 0 6px 0 color-mix(in srgb, var(--s1) 100%, transparent 35%);
+    border-radius: 2px;
     opacity: 1; transition: opacity 0.3s ease 0.6s;
   }
   .hbar-track[data-play="true"] .hbar-fill::after { opacity: 1; }
@@ -361,10 +360,10 @@
   .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin: 2.2rem 0; }
   @media (max-width: 760px) { .cards { grid-template-columns: 1fr; } }
   .game {
-    background: var(--surface); border: 1px solid var(--ring); border-radius: 10px;
+    background: var(--surface); border: 1px solid var(--ring); border-radius: 4px;
     padding: 1.2rem 1.3rem;
   }
-  .game.called { border-color: var(--s1); box-shadow: 0 0 0 1px var(--s1) inset; }
+  .game.called { border-color: var(--s1); }
   .game .round {
     font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
     font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
@@ -372,7 +371,7 @@
     display: flex; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap;
   }
   .badge {
-    color: var(--s1); border: 1px solid currentColor; border-radius: 999px;
+    color: var(--s1); border: 1px solid currentColor; border-radius: 3px;
     padding: 0.05rem 0.55rem; font-size: 0.68rem;
   }
   .teamline {
@@ -404,7 +403,7 @@
   .ffgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; margin-top: 0.4rem; }
   @media (max-width: 560px) { .ffgrid { grid-template-columns: repeat(2, 1fr); } }
   .ffteam {
-    border: 1px solid var(--hairline); border-radius: 8px; padding: 0.7rem 0.5rem;
+    border: 1px solid var(--hairline); border-radius: 4px; padding: 0.7rem 0.5rem;
     text-align: center;
     font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 0.88rem; font-weight: 600;
   }
@@ -448,7 +447,7 @@
   .socialgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin: 1.4rem 0 2.2rem; }
   @media (max-width: 760px) { .socialgrid { grid-template-columns: 1fr; } }
   .embed {
-    position: relative; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden;
+    position: relative; aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden;
     border: 1px solid var(--ring); background: var(--track);
     display: block;
   }
@@ -456,7 +455,7 @@
   .embed img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .embed .play {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 64px; height: 44px; border-radius: 12px;
+    width: 64px; height: 44px; border-radius: 4px;
     background: rgba(11,11,11,0.72);
     display: flex; align-items: center; justify-content: center;
     transition: background 0.15s ease;
@@ -467,7 +466,7 @@
   }
   a.embed:hover .play { background: var(--s2); }
   .embed.mini { max-width: 230px; margin-top: 0.7rem; }
-  .embed.mini .play { width: 46px; height: 32px; border-radius: 9px; }
+  .embed.mini .play { width: 46px; height: 32px; border-radius: 4px; }
   .embed.mini .play::after { border-width: 7px 0 7px 12px; margin-left: 2px; }
   .clipcap {
     font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -643,7 +642,6 @@
     --hit: #08774e;
     --miss: #bd3b52;
     --track: #e9eef6;
-    --glow: rgba(80, 120, 236, 0.15);
   }
   :root[data-theme="dark"] {
     --page: #080d18;
@@ -660,7 +658,6 @@
     --hit: #70dcc6;
     --miss: #ff9aab;
     --track: #1b2940;
-    --glow: rgba(68, 112, 231, 0.2);
   }
   body {
     font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -670,53 +667,45 @@
   .wide, .topbar-in, .foot-in, .smallprint { max-width: 76rem; }
   .prose { max-width: 49rem; }
   .topbar {
-    background: color-mix(in srgb, var(--page) 88%, transparent);
-    backdrop-filter: blur(18px);
+    background: var(--page);
   }
   .topbar-in { min-height: 4.5rem; letter-spacing: 0; text-transform: none; }
-  .wordmark { display: inline-flex; gap: 0.6rem; align-items: center; font-size: 1rem; letter-spacing: -0.03em; white-space: nowrap; }
-  .brand-icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 34px; height: 34px; border: 1px solid var(--baseline); border-radius: 9px;
-    font-size: 0.6rem; letter-spacing: -0.12em;
-  }
-  .brand-icon span { color: #b3481d; padding: 0 2px; }
-  :root[data-theme="dark"] .brand-icon span { color: #ff9a70; }
+  .wordmark { display: inline-flex; gap: 0.6rem; align-items: center; flex: none; font-size: 1rem; letter-spacing: -0.03em; white-space: nowrap; }
+  .wordmark img { display: block; width: 40px; height: 40px; }
   .brand-year { color: var(--muted); margin-left: -0.4rem; font-weight: 400; }
   .navlinks { gap: 1.4rem; }
   .navlinks a { font-size: 0.8rem; font-weight: 600; }
-  #themeToggle, #langToggle, #menuToggle { background: var(--surface); }
+  #themeToggle, #langToggle, #menuToggle { background: var(--surface); border-radius: 4px; }
   .hero {
     position: relative; overflow: hidden; padding: 6rem 0 3rem;
-    background: radial-gradient(ellipse at 75% 15%, var(--glow), transparent 46%);
+    background: var(--page);
   }
-  .hero-layout { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 5rem; align-items: center; }
+  .hero-layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 4rem; align-items: center; }
   .kicker, .part { color: var(--s1); font-size: 0.7rem; letter-spacing: 0.13em; }
   .kicker { margin-bottom: 1.5rem; }
   h1, h2, h3 { letter-spacing: -0.045em; }
-  h1 { font-size: clamp(2.8rem, 5.3vw, 5.2rem); line-height: 1.04; max-width: 13ch; margin-bottom: 1.5rem; }
+  h1 { font-size: clamp(2.7rem, 4.2vw, 4rem); line-height: 1.05; max-width: 20ch; margin-bottom: 1.4rem; }
   .deck { font-size: clamp(1.05rem, 1.5vw, 1.2rem); max-width: 33rem; line-height: 1.7; margin-bottom: 1.7rem; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
   .hero-action {
     display: inline-flex; align-items: center; gap: 0.75rem; min-height: 3rem;
-    padding: 0.7rem 1rem; border: 1px solid var(--ring); border-radius: 9px;
+    padding: 0.7rem 1rem; border: 1px solid var(--ring); border-radius: 4px;
     background: var(--surface); text-decoration: none; font-size: 0.84rem; font-weight: 700;
   }
   .hero-action.primary { background: var(--ink); color: var(--page); border-color: var(--ink); }
-  .hero-action:hover { box-shadow: 0 0 24px var(--glow); border-color: var(--s1); }
+  .hero-action:hover { border-color: var(--s1); }
   .bylinewrap { margin-top: 0; }
   .byline-pic { width: 40px; height: 40px; }
   .byline-loc { max-width: 36rem; }
   .hero-panel {
-    position: relative; padding: 1.5rem; border: 1px solid var(--ring);
-    border-radius: 18px; background: var(--surface);
-    box-shadow: 0 24px 80px -30px var(--glow), 0 0 60px -25px var(--glow);
+    position: relative; padding: 1.25rem 0; border: 0;
+    border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
+    border-radius: 0; background: transparent;
   }
   .panel-top, .panel-row, .panel-bottom { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
   .panel-top { padding-bottom: 1.2rem; border-bottom: 1px solid var(--hairline); }
   .panel-label { color: var(--muted); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
-  .panel-status { color: var(--s3); font-size: 0.7rem; font-weight: 700; }
-  .panel-status::before { content: ""; display: inline-block; width: 0.4rem; height: 0.4rem; margin-right: 0.4rem; border-radius: 50%; background: currentColor; box-shadow: 0 0 10px currentColor; }
+  .panel-status { color: var(--s1); font-size: 0.7rem; font-weight: 700; }
   .panel-title { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.03em; margin: 1.3rem 0 0.2rem; }
   .panel-subtitle { color: var(--muted); font-size: 0.8rem; margin-bottom: 0.8rem; }
   .panel-row { padding: 0.95rem 0; border-bottom: 1px solid var(--hairline); font-size: 0.9rem; }
@@ -725,17 +714,19 @@
   .panel-score { font-weight: 700; font-variant-numeric: tabular-nums; }
   .panel-bottom { padding-top: 1.2rem; font-size: 0.78rem; color: var(--muted); }
   .panel-bottom a { color: var(--s1); font-weight: 700; text-decoration: none; }
-  .stats { gap: 1rem; background: none; border: 0; margin-top: 4rem; }
-  .stat { border: 1px solid var(--ring); border-radius: 12px; padding: 1.25rem 1.4rem; }
+  .stats { gap: 0; background: none; border: 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); margin-top: 3rem; }
+  .stat { border: 0; border-right: 1px solid var(--hairline); border-radius: 0; background: transparent; padding: 1.25rem 1.4rem; }
+  .stat:last-child { border-right: 0; }
   .stat .v { font-size: clamp(1.7rem, 2.5vw, 2.3rem); letter-spacing: -0.05em; }
   .stat .l { max-width: 19ch; color: var(--ink-2); }
   .section-index { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; padding-top: 1.4rem; }
   .section-index .panel-label { margin-right: 0.4rem; }
   .section-index a {
-    padding: 0.4rem 0.75rem; border: 1px solid var(--ring); border-radius: 999px;
-    color: var(--ink-2); font-size: 0.75rem; font-weight: 600; text-decoration: none;
+    padding: 0; border: 0; border-radius: 0;
+    color: var(--ink-2); font-size: 0.8rem; font-weight: 600; text-decoration: underline;
+    text-decoration-color: transparent; text-underline-offset: 0.25em;
   }
-  .section-index a:hover { color: var(--ink); border-color: var(--s1); }
+  .section-index a:hover { color: var(--ink); text-decoration-color: var(--s1); }
   section { padding-top: 5rem; }
   section + section { margin-top: 1rem; }
   h2 { font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.1; }
@@ -747,8 +738,7 @@
     font-style: normal; font-weight: 650; letter-spacing: -0.03em;
   }
   figure, .game, .star, .pedcol, .bracketcard, a.post, .tablewrap, .grades {
-    border-color: var(--ring); border-radius: 14px;
-    box-shadow: 0 16px 40px -30px var(--glow);
+    border-color: var(--ring); border-radius: 4px; box-shadow: none;
   }
   figure { padding: 1.5rem; }
   figure .ftitle { font-size: 1rem; }
@@ -762,9 +752,12 @@
   @media (max-width: 700px) {
     .hero { padding: 3rem 0 2rem; }
     .hero-layout { gap: 2rem; }
-    h1 { font-size: clamp(2.6rem, 11vw, 4rem); }
+    h1 { font-size: clamp(2.3rem, 9.5vw, 3.2rem); }
     .stats { gap: 0.65rem; margin-top: 2rem; }
+    .stats { gap: 0; }
     .stat { padding: 1rem; }
+    .stat:nth-child(2) { border-right: 0; }
+    .stat:nth-child(-n+2) { border-bottom: 1px solid var(--hairline); }
     .section-index { gap: 0.5rem; }
     section { padding-top: 3.5rem; }
     figure { padding: 1rem; }
@@ -795,7 +788,7 @@
 
 <nav class="topbar" aria-label="Primary navigation" data-label-en="Primary navigation" data-label-fr="Navigation principale">
   <div class="topbar-in">
-    <a class="wordmark" href="#top"><span class="brand-icon" aria-hidden="true">M<span>/</span>M</span> MM<span class="brand-year"> / 21</span></a>
+    <a class="wordmark" href="#top"><img src="./figures/ncaa-logo.png" alt="NCAA" width="40" height="40"> MM<span class="brand-year"> / 21</span></a>
     <span class="spacer"></span>
     <div class="navlinks" id="navLinks">
       <a href="#method"><span class="en">The Method</span><span class="fr">La méthode</span></a>
@@ -816,9 +809,9 @@
   <div class="wide">
     <div class="hero-layout">
     <div class="hero-copy">
-    <p class="kicker"><span class="en">A data story · NCAA tournament 2021</span><span class="fr">Une histoire de données · Tournoi NCAA 2021</span></p>
-    <h1><span class="en">Two axes.<br>One bracket.<br>Five years later.</span><span class="fr">Deux axes.<br>Un tableau.<br>Cinq ans plus tard.</span></h1>
-    <p class="deck"><span class="en">My first prediction model started with a scatterplot. Five years later, I put it to the test—and found out what the numbers were really saying.</span><span class="fr">Mon premier modèle de prédiction est né d&rsquo;un nuage de points. Cinq ans plus tard, je l&rsquo;ai mis à l&rsquo;épreuve pour découvrir ce que les chiffres disaient vraiment.</span></p>
+    <p class="kicker"><span class="en">NCAA tournament · 2021</span><span class="fr">Tournoi NCAA · 2021</span></p>
+    <h1><span class="en">My first data science project: an NCAA bracket model built in four days.</span><span class="fr">Mon premier projet de science des données : un modèle de pronostics en quatre jours.</span></h1>
+    <p class="deck"><span class="en">Only three months into my first-ever statistics course on data analysis, I coded every project function from scratch and built a pipeline to ingest NCAA stats from CSVs I&rsquo;d downloaded manually. Five years later, I revisited the work to see what it had taught me.</span><span class="fr">À peine trois mois après le début de mon tout premier cours de statistique sur l&rsquo;analyse de données, j&rsquo;ai codé toutes les fonctions du projet moi-même et monté un pipeline d&rsquo;ingestion pour les statistiques NCAA téléchargées à la main en CSV. Cinq ans plus tard, j&rsquo;ai repris le projet pour voir ce qu&rsquo;il m&rsquo;avait appris.</span></p>
     <div class="hero-actions">
       <a class="hero-action primary" href="#method"><span class="en">Explore the story</span><span class="fr">Explorer l&rsquo;histoire</span> <span aria-hidden="true">↗</span></a>
       <a class="hero-action" href="#reckoning"><span class="en">See the results</span><span class="fr">Voir les résultats</span> <span aria-hidden="true">↓</span></a>
@@ -858,10 +851,10 @@
     </div>
 
     <div class="stats sans">
-      <div class="stat"><div class="v">1<span style="font-size:0.6em"> &amp; </span>3</div><div class="l"><span class="en">where it ranked the two teams that made the final, out of 68</span><span class="fr">rangs des deux finalistes selon le modèle, sur 68 équipes</span></div></div>
-      <div class="stat"><div class="v">39<span style="font-size:0.6em">/66</span></div><div class="l"><span class="en">games the rule gets right, scored five years late</span><span class="fr">matchs réussis par la règle, calculés cinq ans plus tard</span></div></div>
-      <div class="stat"><div class="v">9</div><div class="l"><span class="en">upsets it calls, including a 15 over a 2</span><span class="fr">surprises annoncées par la règle, dont un 15 contre un 2</span></div></div>
-      <div class="stat"><div class="v">64<span style="font-size:0.6em">/68</span></div><div class="l"><span class="en">teams with a bug in their numbers I found in 2026</span><span class="fr">équipes touchées par un bogue découvert en 2026</span></div></div>
+      <div class="stat"><div class="v">1<span style="font-size:0.6em"> &amp; </span>3</div><div class="l"><span class="en">the ranks it gave the two teams that reached the final</span><span class="fr">les rangs attribués aux deux finalistes, sur 68 équipes</span></div></div>
+      <div class="stat"><div class="v">39<span style="font-size:0.6em">/66</span></div><div class="l"><span class="en">games the reconstructed rule picked correctly</span><span class="fr">matchs correctement prédits par la règle reconstruite</span></div></div>
+      <div class="stat"><div class="v">9</div><div class="l"><span class="en">upsets it picked, including a 15-seed over a 2</span><span class="fr">surprises prédites, dont un 15<sup>e</sup> contre un 2<sup>e</sup></span></div></div>
+      <div class="stat"><div class="v">64<span style="font-size:0.6em">/68</span></div><div class="l"><span class="en">teams whose stats were affected by a bug</span><span class="fr">équipes dont les statistiques étaient touchées par un bogue</span></div></div>
     </div>
     <nav class="section-index" aria-label="Explore the story" data-label-en="Explore the story" data-label-fr="Explorer l’histoire">
       <span class="panel-label"><span class="en">Explore</span><span class="fr">Explorer</span></span>
@@ -879,24 +872,24 @@
     <p class="part"><span class="en">Part One</span><span class="fr">Partie un</span></p>
     <h2><span class="en">The model behind the bracket</span><span class="fr">Le modèle derrière le tableau</span></h2>
 
-    <p class="en">In four days in 2021, I gathered 17 stat tables and ran my first principal component analysis (PCA) in R: 33 numbers for each of the 68 teams, reduced to a scatterplot.</p>
-    <p class="fr">En quatre jours en 2021, j&rsquo;ai réuni 17 tableaux de statistiques et réalisé ma première analyse en composantes principales (ACP) dans R&nbsp;: 33 chiffres pour chacune des 68 équipes, résumés dans un nuage de points.</p>
+    <p class="en">I brought 17 manually downloaded NCAA stat tables into one pipeline, covering 33 variables for 68 teams. Then I used R to run a PCA, reducing those variables to two axes.</p>
+    <p class="fr">J&rsquo;ai réuni dans un pipeline 17 tableaux de statistiques NCAA téléchargés manuellement, couvrant 33 variables pour 68 équipes. J&rsquo;ai ensuite utilisé R pour effectuer une ACP et résumer ces variables en deux axes.</p>
 
-    <p class="en">PCA doesn&rsquo;t name its axes. I called the first offense because Gonzaga stood at one extreme, and the second defense because Houston stood at another. Both were fitting anchors&mdash;but one led me astray.</p>
-    <p class="fr">L&rsquo;ACP ne nomme pas ses axes. J&rsquo;ai appelé le premier « attaque » parce que Gonzaga se trouvait à une extrémité, et le deuxième « défense » à cause de Houston. Les deux semblaient de bons repères, mais l&rsquo;un m&rsquo;a induit en erreur.</p>
+    <p class="en">PCA doesn&rsquo;t label its axes. I read PC1 as offense, which the data supported; PC2 initially looked like defense, but further analysis showed that it mostly tracked pace.</p>
+    <p class="fr">L&rsquo;ACP ne nomme pas ses axes. J&rsquo;ai interprété PC1 comme l&rsquo;attaque, ce que les données confirmaient. PC2 semblait d&rsquo;abord représenter la défense, mais une analyse plus poussée a montré qu&rsquo;elle suivait surtout le rythme de jeu.</p>
 
     <figure>
       <div class="ftitle"><span class="en">The rule, finally written down</span><span class="fr">La règle, enfin écrite</span></div>
       <div class="fsub sans">ODI = PC1 + PC2</div>
-      <p class="en" style="font-size:0.92rem;line-height:1.6;color:var(--ink-2)">Both axes are oriented so higher is better, then added with equal weight.</p>
-      <p class="fr" style="font-size:0.92rem;line-height:1.6;color:var(--ink-2)">Les deux axes sont orientés pour que plus haut signifie meilleur, puis additionnés à poids égal.</p>
+      <p class="en" style="font-size:0.92rem;line-height:1.6;color:var(--ink-2)">I flipped the axes so higher scores were better, then gave them equal weight.</p>
+      <p class="fr" style="font-size:0.92rem;line-height:1.6;color:var(--ink-2)">J&rsquo;ai orienté les deux axes pour qu&rsquo;un score élevé soit meilleur, puis je leur ai donné le même poids.</p>
     </figure>
 
-    <p class="en">The scores below belong to this reconstructed rule, not the bracket I submitted in 2021. That bracket also included research on injuries, form, and matchups.</p>
-    <p class="fr">Les résultats ci-dessous évaluent cette règle reconstruite, pas le tableau soumis en 2021, qui tenait aussi compte des blessures, de la forme et des affrontements.</p>
+    <p class="en">These scores are for a reconstructed rule, not my 2021 bracket, which also considered injuries, recent form, and matchups.</p>
+    <p class="fr">Ces résultats évaluent une règle reconstruite, pas mon tableau de 2021, qui tenait aussi compte des blessures, de la forme et des affrontements.</p>
 
-    <p class="en">The two axes captured only 40.2% of the variation in the data. A third would have brought that to 54.7%.</p>
-    <p class="fr">Les deux axes ne captaient que 40,2 % de la variation des données. Une troisième composante aurait porté ce chiffre à 54,7 %.</p>
+    <p class="en">The first two axes explained 40.2% of the variation in the data. Adding a third would have raised that to 54.7%.</p>
+    <p class="fr">Les deux premiers axes expliquaient 40,2 % de la variation des données. En ajouter un troisième aurait porté ce chiffre à 54,7 %.</p>
 
     <figure>
       <div class="ftitle"><span class="en">How much each component explains</span><span class="fr">Ce que chaque composante explique</span></div>
@@ -904,43 +897,43 @@
       <div class="hbar-row"><div class="hbar-label">PC1 <span class="en">offense</span><span class="fr">attaque</span></div><div class="hbar-track viz" style="--w:20.9%"><div class="hbar-fill"></div></div><div class="hbar-val">20.9%</div></div>
       <div class="hbar-row"><div class="hbar-label">PC2 <span class="en">tempo</span><span class="fr">rythme</span></div><div class="hbar-track viz" style="--w:19.3%;--s1:var(--s2)"><div class="hbar-fill"></div></div><div class="hbar-val">19.3%</div></div>
       <div class="hbar-row"><div class="hbar-label">PC3 <span class="en">opponent shooting</span><span class="fr">tirs adverses</span></div><div class="hbar-track viz" style="--w:14.5%;--s1:var(--s3)"><div class="hbar-fill"></div></div><div class="hbar-val">14.5%</div></div>
-      <figcaption><span class="en">I called PC2 defense for five years; the rebuild revealed it was mostly pace.</span><span class="fr">J&rsquo;ai appelé PC2 « défense » pendant cinq ans; la reconstruction a révélé qu&rsquo;elle mesurait surtout le rythme.</span></figcaption>
+      <figcaption><span class="en">Revisiting PC2 showed that it mostly tracked pace, not defense.</span><span class="fr">En reprenant l&rsquo;analyse, j&rsquo;ai constaté que PC2 suivait surtout le rythme de jeu, pas la défense.</span></figcaption>
     </figure>
 
     <h3><span class="en">The original view</span><span class="fr">La vue originale</span></h3>
 
-    <p class="en">Each dot is a team; arrows point toward higher values for each stat. Gonzaga stands alone to the right, pulled by the scoring variables.</p>
-    <p class="fr">Chaque point représente une équipe; les flèches indiquent la direction des valeurs élevées. Gonzaga se détache à droite, portée par les variables offensives.</p>
+    <p class="en">Each dot is a team, and each arrow points toward higher values for a stat. Gonzaga sits well to the right, pulled there by its scoring numbers.</p>
+    <p class="fr">Chaque point représente une équipe et chaque flèche indique la direction où la valeur d&rsquo;une statistique augmente. Gonzaga se détache à droite, portée par ses statistiques offensives.</p>
 
     <figure>
       <div class="ftitle"><span class="en">The 2021 field on two components</span><span class="fr">Le tournoi 2021 sur deux composantes</span></div>
       <div class="fsub sans"><span class="en">The 15 most influential stats shown as arrows</span><span class="fr">Les 15 statistiques les plus influentes, en flèches</span></div>
       <a href="./figures/biplot_combined.png"><img src="./figures/biplot_combined.png" alt="Biplot of the 2021 tournament field on the first two principal components, with variable loading vectors" data-alt-en="Biplot of the 2021 tournament field on the first two principal components, with variable loading vectors" data-alt-fr="Biplot des équipes du tournoi 2021 sur les deux premières composantes, avec les vecteurs des variables" loading="lazy"></a>
-      <figcaption><span class="en">The arrows were added in the reconstruction; the 2021 plot showed only teams.</span><span class="fr">Les flèches ont été ajoutées lors de la reconstruction; le graphique de 2021 ne montrait que les équipes.</span></figcaption>
+      <figcaption><span class="en">I added the arrows when I rebuilt the chart; the 2021 version showed only the teams.</span><span class="fr">J&rsquo;ai ajouté les flèches en reconstruisant le graphique; la version de 2021 ne montrait que les équipes.</span></figcaption>
     </figure>
 
-    <h3><span class="en">The warning in the correlations</span><span class="fr">L&rsquo;avertissement dans les corrélations</span></h3>
+    <h3><span class="en">What the correlations revealed</span><span class="fr">Ce que révèlent les corrélations</span></h3>
 
-    <p class="en">Shooting percentage correlated with wins at +0.43 and losses at −0.58. Opponent shooting had a weaker relationship with winning percentage (−0.26): a warning against treating the two sides as equally informative.</p>
-    <p class="fr">Le pourcentage de tir était corrélé aux victoires à +0,43 et aux défaites à −0,58. Le tir adverse était moins lié au pourcentage de victoires (−0,26)&nbsp;: un avertissement contre l&rsquo;idée que les deux aspects renseignaient autant le modèle.</p>
+    <p class="en">Shooting percentage was more strongly associated with wins (+0.43) and losses (−0.58) than opponent shooting was with winning percentage (−0.26). That contrast helped me take a closer look at what each axis represented.</p>
+    <p class="fr">Le pourcentage de tirs était plus fortement lié aux victoires (+0,43) et aux défaites (−0,58) que le tir adverse au taux de victoires (−0,26). Ce contraste m&rsquo;a amené à examiner de plus près ce que représentait chaque axe.</p>
 
     <figure>
       <div class="ftitle"><span class="en">What actually drives wins and losses</span><span class="fr">Ce qui fait vraiment gagner et perdre</span></div>
       <div class="fsub sans"><span class="en">Every stat against W, L, win %, and the first two components</span><span class="fr">Chaque statistique contre V, D, % de victoires et les deux premières composantes</span></div>
       <a href="./figures/corrplot_combined.png"><img src="./figures/corrplot_combined.png" alt="Correlation plot of every team statistic against wins, losses, win percentage, and the first two principal components" data-alt-en="Correlation plot of every team statistic against wins, losses, win percentage, and the first two principal components" data-alt-fr="Graphique des corrélations entre les statistiques des équipes, les victoires, les défaites, le pourcentage de victoires et les deux premières composantes" loading="lazy"></a>
-      <figcaption><span class="en">Blue and red indicate positive and negative correlations; larger circles indicate stronger relationships. Stars mark correlations that are not statistically significant.</span><span class="fr">Le bleu et le rouge indiquent des corrélations positives et négatives; les gros cercles indiquent des liens plus forts. Les étoiles signalent les corrélations non significatives.</span></figcaption>
+      <figcaption><span class="en">Blue and red show positive and negative correlations; larger circles show stronger ones. Stars mark results that aren&rsquo;t statistically significant.</span><span class="fr">Le bleu et le rouge indiquent des corrélations positives et négatives; les cercles plus grands, des liens plus forts. Les étoiles signalent les résultats non significatifs.</span></figcaption>
     </figure>
 
-    <h3><span class="en">The missing dimension</span><span class="fr">La dimension oubliée</span></h3>
+    <h3><span class="en">The value of a third axis</span><span class="fr">L&rsquo;apport d&rsquo;un troisième axe</span></h3>
 
-    <p class="en">I never plotted PC3 in 2021. It turned out to contain a clearer defensive signal than the axis I called defense.</p>
-    <p class="fr">Je n&rsquo;avais pas tracé PC3 en 2021. Elle contenait pourtant un signal défensif plus clair que l&rsquo;axe que j&rsquo;appelais « défense ».</p>
+    <p class="en">PC3 wasn&rsquo;t part of my 2021 chart. When I revisited it, I found a clearer defensive signal there than in PC2.</p>
+    <p class="fr">PC3 ne figurait pas dans mon graphique de 2021. En reprenant l&rsquo;analyse, j&rsquo;y ai trouvé un signal défensif plus clair que dans PC2.</p>
 
     <figure>
       <div class="ftitle"><span class="en">The 2021 field in three components</span><span class="fr">Le tournoi 2021 en trois composantes</span></div>
       <div class="fsub sans"><span class="en">Drag to rotate · scroll to zoom · hover a dot for the team</span><span class="fr">Glisse pour pivoter · défile pour zoomer · survole un point pour l&rsquo;équipe</span></div>
       <div class="viz3d"><iframe src="./pca3d.html" title="2021 NCAA field in three principal components" loading="lazy"></iframe></div>
-      <figcaption><span class="en">Colour follows PC1: brighter dots indicate stronger offenses.</span><span class="fr">La couleur suit PC1&nbsp;: les points les plus clairs indiquent les attaques les plus fortes.</span></figcaption>
+      <figcaption><span class="en">Colour shows PC1: brighter dots are teams with stronger offenses.</span><span class="fr">La couleur représente PC1&nbsp;: les points clairs correspondent aux équipes les plus fortes en attaque.</span></figcaption>
       <a class="clip" href="./pca3d-table.html"><span class="en">View all 68 teams as a table →</span><span class="fr">Voir les 68 équipes en tableau →</span></a>
       <noscript><p>JavaScript is required for the interactive chart; the table above is available without it.</p></noscript>
     </figure>
@@ -950,10 +943,10 @@
 <section id="picks">
   <div class="prose">
     <p class="part"><span class="en">Part Two</span><span class="fr">Partie deux</span></p>
-    <h2><span class="en">A ranking with a blind spot</span><span class="fr">Un classement avec un angle mort</span></h2>
+    <h2><span class="en">The ranking and its context</span><span class="fr">Le classement et son contexte</span></h2>
 
-    <p class="en">Liberty&rsquo;s position exposes the blind spot: the model treated its scoring against ASUN opponents like Baylor&rsquo;s against much stronger competition.</p>
-    <p class="fr">La position de Liberty révèle l&rsquo;angle mort&nbsp;: le modèle traitait ses points contre les équipes de l&rsquo;ASUN comme ceux de Baylor contre des adversaires bien plus forts.</p>
+    <p class="en">Liberty ranked second despite playing a weaker schedule than Baylor. The model treated their scoring against ASUN opponents as comparable to Baylor&rsquo;s against tougher teams.</p>
+    <p class="fr">Liberty arrivait deuxième malgré un calendrier plus facile que celui de Baylor. Le modèle jugeait comparables ses points contre l&rsquo;ASUN et ceux de Baylor contre des équipes plus fortes.</p>
 
     <figure>
       <div class="ftitle"><span class="en">Top 12 by Offense-Defense Index</span><span class="fr">Top 12 selon l&rsquo;indice attaque-défense</span></div>
@@ -970,7 +963,7 @@
       <div class="hbar-row"><div class="hbar-label">Houston (2)</div><div class="hbar-track viz" style="--w:42.0%"><div class="hbar-fill"></div></div><div class="hbar-val">4.03</div></div>
       <div class="hbar-row"><div class="hbar-label">Abilene Christian (14)</div><div class="hbar-track viz" style="--w:40.6%;--s1:var(--miss)"><div class="hbar-fill"></div></div><div class="hbar-val">3.89</div></div>
       <div class="hbar-row"><div class="hbar-label">Iowa (2)</div><div class="hbar-track viz" style="--w:37.9%"><div class="hbar-fill"></div></div><div class="hbar-val">3.63</div></div>
-      <figcaption><span class="en">Red bars are teams seeded 11th or worse. Seven of the top fifteen qualified. Illinois, a 1-seed, came in seventeenth.</span><span class="fr">Les barres rouges sont des équipes classées 11<sup>e</sup> ou pire. Sept des quinze premières se qualifiaient. Illinois, tête de série n<sup>o</sup> 1, arrive dix-septième.</span></figcaption>
+      <figcaption><span class="en">Red bars mark teams seeded 11 or higher. Seven made the top 15; No. 1 seed Illinois ranked 17th.</span><span class="fr">Les barres rouges indiquent les équipes têtes de série 11 ou plus. Sept sont dans les quinze premières; Illinois, tête de série n<sup>o</sup> 1, arrive 17<sup>e</sup>.</span></figcaption>
     </figure>
 
   </div>
@@ -981,8 +974,8 @@
     <p class="part"><span class="en">Part Three</span><span class="fr">Partie trois</span></p>
     <h2><span class="en">The results</span><span class="fr">Les résultats</span></h2>
 
-    <p class="en">The rule picked both Final Four games, but missed more than half of the first round, where most games are played.</p>
-    <p class="fr">La règle a réussi les deux demi-finales, mais manqué plus de la moitié du premier tour, là où se jouent le plus de matchs.</p>
+    <p class="en">The reconstruction picked both Final Four games correctly and 39 of 66 overall. Its results varied by round, as the chart shows.</p>
+    <p class="fr">La reconstruction a correctement prédit les deux matchs du Final Four et 39 matchs sur 66 au total. Ses résultats varient selon le tour, comme le montre le graphique.</p>
 
     <figure>
       <div class="ftitle"><span class="en">Accuracy by round</span><span class="fr">Précision par tour</span></div>
@@ -994,57 +987,57 @@
       <div class="hbar-row"><div class="hbar-label">Elite Eight</div><div class="hbar-track viz" style="--w:75%;--s1:var(--hit)"><div class="hbar-fill"></div></div><div class="hbar-val">3/4</div></div>
       <div class="hbar-row"><div class="hbar-label">Final Four</div><div class="hbar-track viz" style="--w:100%;--s1:var(--hit)"><div class="hbar-fill"></div></div><div class="hbar-val">2/2</div></div>
       <div class="hbar-row"><div class="hbar-label"><span class="en">Championship</span><span class="fr">Finale</span></div><div class="hbar-track viz zero" style="--w:0%;--s1:var(--miss)"><div class="hbar-fill"></div></div><div class="hbar-val">0/1</div></div>
-      <figcaption><span class="en">66 games, not 67. Oregon&rsquo;s opener against VCU was called off when VCU withdrew under COVID protocols, so Oregon advanced without playing.</span><span class="fr">66 matchs, pas 67. Le match d&rsquo;ouverture d&rsquo;Oregon contre VCU a été annulé quand VCU s&rsquo;est retiré pour raisons sanitaires, alors Oregon a avancé sans jouer.</span></figcaption>
+      <figcaption><span class="en">There were 66 games, not 67: VCU withdrew under COVID protocols, and Oregon advanced without playing.</span><span class="fr">Il y a eu 66 matchs, pas 67&nbsp;: VCU s&rsquo;est retiré pour raisons sanitaires et Oregon a avancé sans jouer.</span></figcaption>
     </figure>
 
-    <h3><span class="en">The uncomfortable comparison</span><span class="fr">La comparaison qui dérange</span></h3>
+    <h3><span class="en">A simple seed-based comparison</span><span class="fr">Comparaison selon les têtes de série</span></h3>
 
-    <p class="en">On the 61 games where seeds could be compared, simply picking the better seed went 42/61; the model went 36/61. It opposed the seeds 24 times and was right nine times.</p>
-    <p class="fr">Sur les 61 matchs où les têtes de série étaient comparables, choisir la mieux classée donnait 42/61; le modèle a fait 36/61. Il s&rsquo;est opposé aux classements 24 fois, avec neuf bons choix.</p>
+    <p class="en">Across 61 games with comparable seeds, the higher seed won 42 and the model picked 36. The model went against the seeds 24 times and correctly identified nine upsets.</p>
+    <p class="fr">Sur 61 matchs comparables, la tête de série la mieux classée en a gagné 42 et le modèle en a prédit 36. Le modèle a choisi l&rsquo;équipe moins bien classée 24 fois et a correctement anticipé neuf surprises.</p>
 
     <h3><span class="en">The upset and the final</span><span class="fr">La surprise et la finale</span></h3>
 
-    <p class="en">The rule picked 15-seed Oral Roberts over Ohio State and then Florida. Its blindness to opponent strength helped it back a team others overlooked&mdash;the same flaw that inflated Liberty&rsquo;s ranking.</p>
-    <p class="fr">La règle a choisi Oral Roberts, 15<sup>e</sup> tête de série, contre Ohio State puis Florida. En ignorant la force des adversaires, elle a misé sur une équipe négligée&mdash;le même défaut qui gonflait le classement de Liberty.</p>
+    <p class="en">One notable pick was No. 15 Oral Roberts over Ohio State and Florida. It shows the model could surface possible upsets, while also highlighting a limitation: it did not account for opponent strength, which also affected Liberty&rsquo;s high ranking.</p>
+    <p class="fr">Un choix marquant fut la victoire d&rsquo;Oral Roberts, tête de série 15, contre Ohio State puis Florida. Cela montre que le modèle pouvait faire ressortir des surprises possibles, tout en révélant une limite : il ne tenait pas compte de la force des adversaires, ce qui a aussi influencé le classement élevé de Liberty.</p>
 
-    <p class="en">In the final, Gonzaga&rsquo;s edge over Baylor was just 1.52 ODI points, versus 10.42 over UCLA in the semifinal. The pipeline treated both as simple picks, hiding the difference in uncertainty. Baylor won 86–70.</p>
-    <p class="fr">En finale, l&rsquo;avance de Gonzaga sur Baylor n&rsquo;était que de 1,52 point d&rsquo;ODI, contre 10,42 sur UCLA en demi-finale. La machine présentait les deux comme de simples choix, sans montrer la différence d&rsquo;incertitude. Baylor a gagné 86–70.</p>
+    <p class="en">Gonzaga&rsquo;s ODI edge over Baylor was 1.52 points, versus 10.42 over UCLA. The rule treated both as simple picks, so it did not express how uncertain the final was. Baylor won 86–70.</p>
+    <p class="fr">L&rsquo;avance de Gonzaga sur Baylor était de 1,52 point d&rsquo;ODI, contre 10,42 sur UCLA. La règle traitait les deux matchs comme de simples choix et ne montrait donc pas l&rsquo;incertitude de la finale. Baylor a gagné 86–70.</p>
   </div>
 </section>
 <section id="reportcard">
   <div class="prose">
     <p class="part"><span class="en">Part Four</span><span class="fr">Partie quatre</span></p>
-    <h2><span class="en">Report Card</span><span class="fr">Bulletin</span></h2>
+    <h2><span class="en">What the model did well—and where it could grow</span><span class="fr">Forces du modèle et pistes d&rsquo;amélioration</span></h2>
 
     <div class="grades">
-      <div class="grade"><div class="g" style="color:var(--hit)">A</div><div class="gl"><span class="en">Spotting elite offense</span><span class="fr">Repérer l&rsquo;attaque d&rsquo;élite</span></div></div>
-      <div class="grade"><div class="g" style="color:var(--hit)">A−</div><div class="gl"><span class="en">Late rounds</span><span class="fr">Les derniers tours</span></div></div>
-      <div class="grade"><div class="g" style="color:var(--s3)">B+</div><div class="gl"><span class="en">Sniffing out upsets</span><span class="fr">Flairer les surprises</span></div></div>
-      <div class="grade"><div class="g" style="color:var(--s2)">C</div><div class="gl"><span class="en">Knowing when it was guessing</span><span class="fr">Savoir quand il devinait</span></div></div>
-      <div class="grade"><div class="g" style="color:var(--miss)">D</div><div class="gl"><span class="en">First round</span><span class="fr">Premier tour</span></div></div>
-      <div class="grade"><div class="g" style="color:var(--miss)">F</div><div class="gl"><span class="en">Knowing who anybody played</span><span class="fr">Savoir contre qui on a joué</span></div></div>
+      <div class="grade"><div class="g" style="color:var(--hit)">A</div><div class="gl"><span class="en">Rating elite offenses</span><span class="fr">Évaluer les attaques d&rsquo;élite</span></div></div>
+      <div class="grade"><div class="g" style="color:var(--hit)">A−</div><div class="gl"><span class="en">Later tournament rounds</span><span class="fr">Tours avancés du tournoi</span></div></div>
+      <div class="grade"><div class="g" style="color:var(--s3)">B+</div><div class="gl"><span class="en">Identifying potential upsets</span><span class="fr">Repérer les surprises possibles</span></div></div>
+      <div class="grade"><div class="g" style="color:var(--s2)">C</div><div class="gl"><span class="en">Expressing uncertainty</span><span class="fr">Exprimer l&rsquo;incertitude</span></div></div>
+      <div class="grade"><div class="g" style="color:var(--miss)">D</div><div class="gl"><span class="en">Opening round</span><span class="fr">Premier tour</span></div></div>
+      <div class="grade"><div class="g" style="color:var(--miss)">F</div><div class="gl"><span class="en">Adjusting for opponent strength</span><span class="fr">Ajuster selon la force des adversaires</span></div></div>
     </div>
 
-    <p class="en">An ODI edge above 4 produced 22 correct picks in 29 games (75.9%). Between 1 and 2, the rule went just 3 for 10&mdash;a small sample, but a reminder that a margin is not a calibrated probability.</p>
-    <p class="fr">Une avance de plus de 4 points d&rsquo;ODI a donné 22 bonnes prédictions sur 29 (75,9 %). Entre 1 et 2, la règle n&rsquo;en a réussi que 3 sur 10&nbsp;: un petit échantillon, mais un rappel qu&rsquo;une marge n&rsquo;est pas une probabilité calibrée.</p>
+    <p class="en">With an ODI edge above 4, the rule picked 22 of 29 winners (75.9%); with an edge between 1 and 2, it picked 3 of 10. These small samples are a useful reminder that a score margin is not a probability.</p>
+    <p class="fr">Avec un écart d&rsquo;ODI supérieur à 4, la règle a prédit 22 vainqueurs sur 29 (75,9 %); pour un écart entre 1 et 2, elle en a prédit 3 sur 10. Ces petits échantillons rappellent qu&rsquo;un écart de score n&rsquo;est pas une probabilité.</p>
 
-    <h3><span class="en">Two bugs, five years late</span><span class="fr">Deux bogues, cinq ans en retard</span></h3>
+    <h3><span class="en">What the rebuild uncovered</span><span class="fr">Ce qu&rsquo;a révélé la reconstruction</span></h3>
 
-    <p class="en">A merge reordered one table before the effective field-goal calculation, mixing another team&rsquo;s three-pointers into 64 of 68 rows. Gonzaga&rsquo;s figure became 65.0% instead of 61.0%; the mean error was 1.5 percentage points. The original script saved no tables to inspect.</p>
-    <p class="fr">Une fusion a réordonné un tableau avant le calcul de la réussite effective, mélangeant les tirs à trois points d&rsquo;une autre équipe dans 64 lignes sur 68. Le chiffre de Gonzaga est passé de 61,0 % à 65,0 %; l&rsquo;erreur moyenne était de 1,5 point de pourcentage. Le script original ne sauvegardait aucun tableau à vérifier.</p>
+    <p class="en">During the rebuild, I found that a merge had reordered one table before the effective field-goal percentage calculation. That misaligned three-point totals for 64 of 68 teams. The corrected calculation puts Gonzaga at 61.0%, not the original script&rsquo;s 65.0%; the mean difference was 1.5 points. I hadn&rsquo;t saved the intermediate tables in 2021, so I couldn&rsquo;t verify the row alignment at the time.</p>
+    <p class="fr">En reconstruisant l&rsquo;analyse, j&rsquo;ai constaté qu&rsquo;une fusion avait réordonné un tableau avant le calcul du pourcentage de réussite effective. Les tirs à trois points étaient ainsi associés aux mauvaises équipes pour 64 équipes sur 68. Le calcul corrigé situe Gonzaga à 61,0 %, contre 65,0 % dans le script original; l&rsquo;écart moyen était de 1,5 point. Je n&rsquo;avais pas conservé les tableaux intermédiaires en 2021, ce qui ne me permettait pas de vérifier l&rsquo;alignement à l&rsquo;époque.</p>
 
-    <p class="en">A separate plotting bug put significance stars on the wrong cells in the original defensive correlation chart. R had warned me; I missed it.</p>
-    <p class="fr">Un autre bogue plaçait les étoiles de signification dans les mauvaises cases du graphique défensif original. R m&rsquo;avait averti; je ne l&rsquo;avais pas vu.</p>
+    <p class="en">A separate display issue placed the significance stars in the wrong cells of the original defensive correlation chart. R flagged the matrix mismatch—a useful reminder to check diagnostics as part of the analysis.</p>
+    <p class="fr">Un problème d&rsquo;affichage distinct plaçait les étoiles de significativité dans les mauvaises cases du graphique de corrélation défensif original. R signalait le décalage entre les matrices : un rappel utile de vérifier les diagnostics au fil de l&rsquo;analyse.</p>
   </div>
 </section>
 
 <section id="lessons">
   <div class="prose">
     <p class="part"><span class="en">Part Five</span><span class="fr">Partie cinq</span></p>
-    <h2><span class="en">The defense axis wasn&rsquo;t defense</span><span class="fr">L&rsquo;axe défensif ne mesurait pas la défense</span></h2>
+    <h2><span class="en">What the second axis measured</span><span class="fr">Ce que mesurait le deuxième axe</span></h2>
 
-    <p class="en">PC2 correlated with opponent points per game at +0.70, but with opponent shooting percentage at just −0.01. It was largely tracking pace: slower teams concede fewer points whether they defend well or not.</p>
-    <p class="fr">PC2 était corrélée aux points adverses par match à +0,70, mais au pourcentage de tir adverse à seulement −0,01. Elle suivait surtout le rythme&nbsp;: une équipe lente encaisse moins de points, qu&rsquo;elle défende bien ou non.</p>
+    <p class="en">PC2 correlated with opponents&rsquo; points per game (+0.70), but barely with their shooting percentage (−0.01). It mostly tracked pace: slow teams allow fewer points, regardless of how well they defend.</p>
+    <p class="fr">PC2 était corrélée aux points adverses par match (+0,70), mais à peine à leur pourcentage de tir (−0,01). Elle suivait surtout le rythme&nbsp;: les équipes lentes encaissent moins de points, peu importe leur défense.</p>
 
     <figure>
       <div class="ftitle"><span class="en">What each axis is actually made of</span><span class="fr">De quoi chaque axe est vraiment fait</span></div>
@@ -1056,16 +1049,16 @@
       <div class="hbar-group">PC2 · <span class="en">the one I called defense</span><span class="fr">celui que j&rsquo;appelais la défense</span></div>
       <div class="hbar-row"><div class="hbar-label"><span class="en">Opponent points/game</span><span class="fr">Points adverses/match</span></div><div class="hbar-track viz" style="--w:70.4%;--s1:var(--s2)"><div class="hbar-fill"></div></div><div class="hbar-val">+0.70</div></div>
       <div class="hbar-row"><div class="hbar-label"><span class="en">Opponent FG%</span><span class="fr">Réussite adverse</span></div><div class="hbar-track viz" style="--w:1.2%;--s1:var(--miss)"><div class="hbar-fill"></div></div><div class="hbar-val">−0.01</div></div>
-      <figcaption><span class="en">PC1 reflects offense; PC2 combines pace-related statistics.</span><span class="fr">PC1 reflète l&rsquo;attaque; PC2 combine des statistiques liées au rythme.</span></figcaption>
+      <figcaption><span class="en">PC1 tracks offense. PC2 mostly reflects pace.</span><span class="fr">PC1 suit l&rsquo;attaque; PC2 reflète surtout le rythme de jeu.</span></figcaption>
     </figure>
 
-    <p class="en">Houston hid the mistake: it had the field&rsquo;s best opponent shooting percentage and played slowly, so it fit both interpretations. The overlooked PC3 correlated with opponent shooting at +0.62.</p>
-    <p class="fr">Houston masquait l&rsquo;erreur&nbsp;: l&rsquo;équipe avait le meilleur pourcentage de tir adverse du tournoi et jouait lentement, ce qui correspondait aux deux interprétations. La composante PC3 oubliée était corrélée aux tirs adverses à +0,62.</p>
+    <p class="en">Houston helps explain the interpretation: it was the best at limiting opponent shooting and one of the slowest teams. PC3, which I didn&rsquo;t include in the original chart, correlated with opponent shooting at +0.62.</p>
+    <p class="fr">Houston aide à comprendre cette interprétation : l&rsquo;équipe limitait le mieux le tir adverse et faisait partie des plus lentes. PC3, que je n&rsquo;avais pas incluse dans le graphique original, était corrélée au tir adverse à +0,62.</p>
 
     <h3><span class="en">What changed in 2026</span><span class="fr">Ce qui a changé en 2026</span></h3>
 
-    <p class="en">The next model uses KenPom and Barttorvik efficiency data adjusted for pace and opponents. It also produces probabilities, saves game-by-game results, and backtests its picks&mdash;so the next mistake is easier to find.</p>
-    <p class="fr">Le modèle suivant utilise les données d&rsquo;efficacité de KenPom et Barttorvik, ajustées au rythme et aux adversaires. Il produit aussi des probabilités, conserve les résultats match par match et teste ses prédictions rétrospectivement&mdash;pour repérer plus facilement la prochaine erreur.</p>
+    <p class="en">The 2026 model uses KenPom and Barttorvik ratings adjusted for pace and opponent strength. It also produces probabilities, records each game, and backtests its picks—so I can evaluate the full process and keep improving it.</p>
+    <p class="fr">Le modèle 2026 utilise les indices KenPom et Barttorvik ajustés au rythme et à la force des adversaires. Il calcule des probabilités, consigne chaque match et teste ses prédictions afin d&rsquo;évaluer le processus et de continuer à l&rsquo;améliorer.</p>
 
     <p style="margin:1.8rem 0"><a class="clip" href="https://cedpaul13.github.io/March_Madness_2026/"><span class="en">See where it ended up: March Madness 2026 →</span><span class="fr">Voir l&rsquo;aboutissement&nbsp;: March Madness 2026 →</span></a></p>
   </div>
@@ -1077,14 +1070,14 @@
   <div class="foot-in">
     <div>
       <h4><span class="en">About this project</span><span class="fr">À propos du projet</span></h4>
-      <p class="about en">A 2021 NCAA prediction model, rebuilt and evaluated in 2026. Explore the code and the full post-mortem below.</p>
-      <p class="about fr">Un modèle de prédiction NCAA de 2021, reconstruit et évalué en 2026. Le code et le post-mortem complet sont ci-dessous.</p>
+      <p class="about en">I rebuilt my 2021 NCAA bracket model and tested its picks against the tournament results. The code and full write-up are below.</p>
+      <p class="about fr">J&rsquo;ai reconstruit mon modèle de tournoi NCAA de 2021 et comparé ses prédictions aux résultats. Le code et le récit complet sont ci-dessous.</p>
     </div>
     <div>
       <h4><span class="en">The work</span><span class="fr">Le travail</span></h4>
       <ul>
         <li><a href="https://github.com/cedpaul13/March_Madness_2021"><span class="en">GitHub repository</span><span class="fr">Dépôt GitHub</span></a></li>
-        <li><a href="https://github.com/cedpaul13/March_Madness_2021/blob/main/POST_MORTEM.md"><span class="en">Full post-mortem</span><span class="fr">Post-mortem complet</span></a></li>
+        <li><a href="https://github.com/cedpaul13/March_Madness_2021/blob/main/POST_MORTEM.md"><span class="en">Full project write-up</span><span class="fr">Récit complet du projet</span></a></li>
         <li><a href="https://github.com/cedpaul13/March_Madness_2021/blob/main/archives/NCAA_2021_original.R"><span class="en">The original 2021 script</span><span class="fr">Le script original de 2021</span></a></li>
         <li><a href="https://cedpaul13.github.io/March_Madness_2026/">March Madness 2026</a></li>
       </ul>
@@ -1097,7 +1090,7 @@
       </ul>
     </div>
   </div>
-  <p class="smallprint"><span class="en">© 2026 Cédrick Kayigire. Season stats collected March 2021; tournament results from the Kaggle March Machine Learning Mania dataset. Built by hand; no trackers, no cookies.</span><span class="fr">© 2026 Cédrick Kayigire. Statistiques de saison recueillies en mars 2021; résultats du tournoi tirés du jeu de données Kaggle March Machine Learning Mania. Fait à la main; sans traqueurs ni témoins.</span></p>
+  <p class="smallprint"><span class="en">© 2026 Cédrick Kayigire. Season stats collected in March 2021; tournament results from Kaggle&rsquo;s March Machine Learning Mania dataset. No trackers or cookies.</span><span class="fr">© 2026 Cédrick Kayigire. Statistiques de saison recueillies en mars 2021; résultats du tournoi tirés du jeu de données March Machine Learning Mania de Kaggle. Sans traqueurs ni témoins.</span></p>
 </footer>
 
 <script>
@@ -1147,8 +1140,8 @@ function imgFallback(img, url) {
     fr: "Deux axes et un nuage de points · March Madness 2021"
   };
   var descs = {
-    en: "My first prediction model had Gonzaga and Baylor first and third out of 68 teams. It also had a 13-seed second. Five years later I finally scored the thing, and found two bugs I never knew about.",
-    fr: "Mon premier modèle de prédiction plaçait Gonzaga et Baylor aux 1re et 3e places sur 68 équipes. Il plaçait aussi un 13e tête de série au deuxième rang. Cinq ans plus tard, j'ai enfin calculé son résultat et trouvé deux bogues que j'ignorais."
+    en: "Three months into my first-ever statistics course on data analysis, I built my first data science project in four days, coding its functions from scratch and ingesting NCAA stats from manually downloaded CSVs.",
+    fr: "À peine trois mois après le début de mon tout premier cours de statistique sur l’analyse de données, j’ai réalisé mon premier projet de science des données en quatre jours : un modèle de pronostics du tournoi NCAA et un pipeline d’ingestion de statistiques téléchargées en CSV."
   };
   function setLang(lang) {
     root.setAttribute("data-lang", lang);
