@@ -94,6 +94,29 @@ scores_3d <- data.frame(Team = NCAA_ALL$Team,
                         Conference = NCAA_ALL$Conference,
                         pca_combined$x[, 1:3])
 
+write_pca_table <- function(scores, path) {
+  scores <- scores[order(scores$Team), ]
+  rows <- vapply(seq_len(nrow(scores)), function(i) {
+    sprintf("<tr><th scope=\"row\">%s</th><td>%s</td><td>%.3f</td><td>%.3f</td><td>%.3f</td></tr>",
+            htmltools::htmlEscape(scores$Team[i]),
+            htmltools::htmlEscape(scores$Conference[i]),
+            scores$PC1[i], scores$PC2[i], scores$PC3[i])
+  }, character(1))
+  writeLines(c(
+    '<!doctype html><html lang="en"><head><meta charset="utf-8">',
+    '<meta name="viewport" content="width=device-width, initial-scale=1">',
+    '<title>2021 PCA data / Données ACP 2021</title>',
+    '<style>body{font:1rem/1.6 system-ui,sans-serif;max-width:60rem;margin:auto;padding:1.5rem;color:#141c2c;background:#f5f7fb}a{color:#315ed0}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}th,td{text-align:left;padding:.6rem;border-bottom:1px solid #dce3ed}th{font-weight:600}.scroll{overflow-x:auto}</style>',
+    '</head><body><p><a href="./index.html#method">← Back to the story / Retour à l&rsquo;article</a></p>',
+    '<h1>2021 PCA data / Données ACP 2021</h1>',
+    '<p>Coordinates match the 3D chart before reorienting axes for the ODI rule.<br><span lang="fr">Coordonnées du graphique 3D avant la réorientation des axes pour la règle ODI.</span></p>',
+    '<div class="scroll"><table><caption>68 teams / <span lang="fr">68 équipes</span></caption><thead><tr><th scope="col">Team / Équipe</th><th scope="col">Conference / Conférence</th><th scope="col">PC1</th><th scope="col">PC2</th><th scope="col">PC3</th></tr></thead><tbody>',
+    rows,
+    '</tbody></table></div></body></html>'
+  ), path, useBytes = TRUE)
+}
+write_pca_table(scores_3d, file.path(DOCS_DIR, "pca3d-table.html"))
+
 widget <- plotly::plot_ly(
     scores_3d, x = ~PC1, y = ~PC2, z = ~PC3,
     type = "scatter3d", mode = "markers",

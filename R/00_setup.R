@@ -1,7 +1,7 @@
 # Shared setup: packages, paths, and the 2021 tournament field.
 
 required <- c("dplyr", "purrr", "stringr", "ggplot2", "factoextra",
-              "corrplot", "Hmisc", "plotly", "htmlwidgets")
+              "corrplot", "Hmisc", "plotly", "htmlwidgets", "htmltools")
 
 missing <- required[!vapply(required, requireNamespace, logical(1), quietly = TRUE)]
 if (length(missing)) {
