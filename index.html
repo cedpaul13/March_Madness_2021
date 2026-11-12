@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en-CA" data-lang="en" data-theme="dark">
+<html lang="fr-CA" data-lang="fr" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Two Axes and a Scatterplot · March Madness 2021</title>
-<meta name="description" id="metaDesc" content="Three months into my first-ever statistics course on data analysis, I built my first data science project in four days, coding its functions from scratch and ingesting NCAA stats from manually downloaded CSVs.">
+<title>Deux axes et un nuage de points · March Madness 2021</title>
+<meta name="description" id="metaDesc" content="À peine trois mois après le début de mon tout premier cours de statistique sur l’analyse de données, j’ai réalisé mon premier projet de science des données en quatre jours : un modèle de pronostics du tournoi NCAA et un pipeline d’ingestion de statistiques téléchargées en CSV.">
 <script>
 (function () {
   var t = null;
@@ -12,13 +12,12 @@
   try { t = localStorage.getItem("mm21-theme"); } catch (e) {}
   try { lang = localStorage.getItem("mm21-lang"); } catch (e) {}
   if (t !== "dark" && t !== "light") {
-    t = "dark";
+    t = "light";
   }
+  if (lang !== "en" && lang !== "fr") lang = "fr";
   document.documentElement.setAttribute("data-theme", t);
-  if (lang === "fr") {
-    document.documentElement.setAttribute("data-lang", "fr");
-    document.documentElement.setAttribute("lang", "fr-CA");
-  }
+  document.documentElement.setAttribute("data-lang", lang);
+  document.documentElement.setAttribute("lang", lang === "fr" ? "fr-CA" : "en-CA");
 })();
 </script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23eb6834'/%3E%3Cpath d='M2 16h28M16 2v28M6 6c6 5 6 15 0 20M26 6c-6 5-6 15 0 20' stroke='%231a1a19' stroke-width='1.6' fill='none'/%3E%3C/svg%3E">
@@ -1109,7 +1108,7 @@ function imgFallback(img, url) {
 (function () {
   var root = document.documentElement;
 
-  /* theme: set before paint from the saved choice, or dark by default */
+  /* theme: set before paint from the saved choice, or light by default */
   var TKEY = "mm21-theme";
   var themeBtn = document.getElementById("themeToggle");
   function updateThemeLabel() {
@@ -1165,7 +1164,7 @@ function imgFallback(img, url) {
   }
   var savedLang = null;
   try { savedLang = localStorage.getItem(LKEY); } catch (e) {}
-  if (savedLang !== "en" && savedLang !== "fr") savedLang = "en";
+  if (savedLang !== "en" && savedLang !== "fr") savedLang = "fr";
   setLang(savedLang);
 
   langBtn.addEventListener("click", function () {
