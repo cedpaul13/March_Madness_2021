@@ -1,15 +1,15 @@
 # March Madness 2021: Two Axes and a Scatterplot
 
-Before the ensemble and the 132,134 matchup probabilities, there was this: four days, seventeen spreadsheets, and a principal component analysis I had just learned to run. First year of a statistics degree, brand new to R, and convinced I was onto something. Five years later I wrote the rule down as code and finally scored it.
+This project started with four days, seventeen spreadsheets, and a principal component analysis I had just learned to run. I was in my first year of a statistics degree, new to R, and curious to see whether the charts could help me pick a bracket. Five years later, I turned that idea into code and measured how it did.
 
-**The full story, charts included, lives [here](https://cedpaul13.github.io/March_Madness_2021/).** English and French.
+**The full story and charts are [here](https://cedpaul13.github.io/March_Madness_2021/), in English and French.**
 
-Worth a click for:
+The project looks at:
 
-* Gonzaga and Baylor ranked first and third out of 68 teams, weeks before they met in the final
-* Nine correct upset calls, including the Oral Roberts 15-over-2 that torched everyone's bracket
-* A reconstruction of the rule that still loses to simply picking the better seed, and the reason why
-* An axis I called "defense" for five years that turns out to measure tempo
+* Gonzaga and Baylor ranking first and third among 68 teams before they met in the final
+* Nine correctly predicted upsets, including Oral Roberts beating a No. 2 seed
+* How the reconstructed rule performed against simply picking the higher seed
+* Why one axis I called "defense" was actually measuring tempo
 
 ---
 
@@ -24,13 +24,13 @@ Worth a click for:
 
 ## Run the pipeline
 
-Four scripts: load and merge the season stats, run the PCA, turn the components into picks, score them against what actually happened.
+The four scripts load and merge the season stats, run the PCA, use its components to make picks, and compare those picks with the tournament results.
 
 ```bash
 Rscript R/run_all.R
 ```
 
-Run it from the project root. `R/00_setup.R` grabs anything you're missing (`dplyr`, `purrr`, `stringr`, `ggplot2`, `factoextra`, `corrplot`, `Hmisc`, `plotly`, `htmlwidgets`, `htmltools`).
+Run it from the project root. `R/00_setup.R` installs any missing packages (`dplyr`, `purrr`, `stringr`, `ggplot2`, `factoextra`, `corrplot`, `Hmisc`, `plotly`, `htmlwidgets`, and `htmltools`).
 
 You'll get figures in `outputs/figures/` (biplots, correlation plots, the accuracy chart), tables in `data/processed/` (merged stats, team ratings, picks vs. results), and an interactive three-component view at `docs/pca3d.html` with an accessible table at `docs/pca3d-table.html`.
 

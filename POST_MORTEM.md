@@ -1,6 +1,6 @@
-# The 2021 Post-Mortem: I Read a Chart With My Eyes and Called It a Model
+# The 2021 Post-Mortem: What I Learned from an Early Bracket Model
 
-*This was my first predictive model. I built it in four days during my first year of a statistics degree, having just started programming in R, at a point where PCA was brand new to me and felt like a superpower. 363 lines, seventeen spreadsheets, and a scatterplot I read by eye. Five years later I went back, wrote the rule down as actual code, and scored it against every game. Here's what I found, including two bugs and one axis that was never measuring what I thought it was.*
+*I built my first attempt at a predictive model in four days, during my first year studying statistics and soon after I began learning R. I used seventeen spreadsheets and judged the results by looking at a scatterplot. Five years later, I translated that approach into code and checked it against the tournament results. This is what I found, including two bugs and an axis that measured something different from what I thought.*
 
 ---
 
@@ -14,9 +14,9 @@
 | **My board** | Gonzaga 1st of 68 · Baylor 3rd of 68 |
 | **My final** | Gonzaga over Baylor. Nope. |
 
-The whole tournament was played in one state, in a bubble, after a season where teams played wildly different schedules against wildly different competition. It produced a record fourteen upsets. If you were going to pick one year in history to trust raw per-game averages, it would not be this one.
+The tournament was played in a bubble, with every game in Indiana. During the season, teams had faced very different schedules and levels of competition. The tournament also had a record fourteen upsets, making raw per-game averages especially unreliable.
 
-My model was nothing but raw per-game averages. It still had the two teams that reached the final ranked first and third in the country, and then took the wrong one.
+My model used only raw per-game averages. It ranked the two finalists first and third, but picked the wrong champion.
 
 ---
 
@@ -24,19 +24,19 @@ My model was nothing but raw per-game averages. It still had the two teams that 
 
 The 2021 script ran a PCA over 33 team stats: shooting, rebounds, assists, turnovers, fouls, opponent equivalents, win-loss record. Then it plotted the field on the first two components.
 
-PCA gives you coordinates and no labels, so naming the axes was on me. I did it by finding teams I already understood. Gonzaga sat far out on the first axis, and Gonzaga was the most offense-oriented team in the country. Houston anchored the second, and Houston was a Kelvin Sampson team, which meant defense above everything. Axis one is offense, axis two is defense. Rebuilding it years later, that read holds up remarkably well: Gonzaga finished first of 68 in both points per game and effective field goal percentage, and Houston finished first of 68 in opponent field goal percentage. I anchored on the actual best offense and the actual best defense in the field.
+PCA produces coordinates but doesn't label the axes, so I named them by looking at teams I knew. Gonzaga stood out on the first axis and had one of the country's strongest offenses. Houston stood out on the second; it was known for its defense under coach Kelvin Sampson. I concluded that the first axis represented offense and the second defense. When I rebuilt the analysis, the first interpretation held up: Gonzaga ranked first of 68 in both points per game and effective field goal percentage. Houston ranked first in opponent field goal percentage, which seemed to support my interpretation of the second axis.
 
-My rule, which existed entirely in my head, was that whoever sat further toward the good corner won.
+My rule was simple: whichever team was farther toward the "good" corner of the chart would win.
 
-Written out, it's one line:
+Written as a formula, it is:
 
 ```
 ODI = PC1 + PC2        (both axes flipped so bigger = better)
 ```
 
-Equal weight on both, because that's what your eye does with a chart. Nothing tuned, nothing calibrated, no backtest.
+I gave the two axes equal weight. I hadn't tuned or calibrated the formula, and I hadn't tested it on past results.
 
-**An important caveat before the numbers.** This rule is a reconstruction, and every score below belongs to the reconstruction rather than to the bracket I actually submitted. That one went up on CBS and it was a blend: the chart, plus a week of reading about these teams, plus who was hot coming into the tournament, plus who was hurt. The analytics were the new thing I wanted to test, not the entire method. What follows is what the rule does on its own, cleanly, against all 66 games.
+**A note about the results:** this rule is a reconstruction. The scores below are for the reconstructed rule, not the bracket I submitted on CBS in 2021. My actual bracket also reflected what I had read about the teams, their recent form, and injuries. I was testing the PCA as one input, not using it to make every pick. The results below show how the rule performed on its own across the 66 games played.
 
 Run against all 66 games actually played:
 
@@ -70,53 +70,51 @@ Run against all 66 games actually played:
 | UCLA's run from the First Four | Got the play-in, missed the rest | Final Four | ~ |
 | Beating the seeds | 36 / 61 | Chalk: 42 / 61 | ✗ |
 
-The top of the bracket was excellent. The middle was a disaster. I found the two best teams in the country and half the Final Four, then gave it all back in the rounds where most of a bracket is actually decided.
+The model ranked both finalists near the top and correctly picked both Final Four games. It did less well in the early rounds, where most bracket points are decided.
 
 ---
 
-## The Number That Hurts
+## Comparison with Higher-Seed Picks
 
-Just picking the better seed every time goes **42 of 61**. My model went **36 of 61** on those same games. It argued with the committee 24 times and won 9 of those arguments.
+Picking the higher seed every time got **42 of 61** games right. My model got **36 of 61** on those same games. It disagreed with the committee 24 times and got 9 of those picks right.
 
-A room full of people with a whiteboard beat my computer by six games.
-
-That's the honest headline for the rule taken on its own. It's also the number that never existed until I wrote this document, because in 2021 the analysis was one input among several and nobody was keeping score of it separately.
+Picking the higher seed did six games better. I hadn't measured the PCA rule separately in 2021, because it was only one part of my approach.
 
 ---
 
-## The Storylines
+## What Stood Out
 
-### Gonzaga: right about the team, wrong about the trophy
+### Gonzaga: a strong team, but the wrong champion
 
-Gonzaga topped my board by a distance, 9.59 to Baylor's 8.07, with the rest of the field well back. That wasn't noise. Their 2021 offense was one of the best in modern college basketball: 61.0% effective field goal percentage, first in the field by two and a half points.
+Gonzaga topped my rankings at 9.59, ahead of Baylor at 8.07, with the rest of the field further behind. Gonzaga had a strong offense in 2021, with a 61.0% effective field goal percentage, the best in the field by 2.5 percentage points.
 
-They walked into the final 31-0.
+Gonzaga entered the final with a 31-0 record.
 
-My model made them a favourite by 1.52 points of ODI. For scale, it had Gonzaga over UCLA in the semifinal by 10.42. It was quietly telling me this was the tightest game of the tournament, and I had no way to hear it, because 1.52 and 10.42 came out of the pipeline looking exactly alike.
+The model gave Gonzaga a 1.52-point ODI advantage over Baylor. For comparison, its advantage over UCLA in the semifinal was 10.42 points. The difference suggested that the final would be close, but I hadn't defined how to interpret the size of an ODI margin.
 
-Baylor won by sixteen. It stopped being a game around the eight-minute mark of the first half.
+Baylor won by sixteen, taking control before halftime.
 
-The mistake wasn't liking Gonzaga; everybody liked Gonzaga. The mistake was building something that couldn't say *this one's close*.
+The problem wasn't that I favored Gonzaga; many people did. The model gave no useful indication of how uncertain that pick was.
 
-### Oral Roberts: the bug that paid
+### Oral Roberts: an upset the model got right
 
-A 15-seed beats a 2-seed about once every four years. Oral Roberts did it in overtime, then beat Florida, then lost to Arkansas by two in the Sweet 16 and nearly made the Elite Eight.
+Oral Roberts beat a No. 2 seed in overtime, then beat Florida before losing to Arkansas by two points in the Sweet 16.
 
-I called both wins. Not because of any insight, but because Oral Roberts scored a pile of points in the Summit League and my model had never heard of the Summit League.
+The model picked both upsets, largely because it treated Oral Roberts' high scoring average in the Summit League as if it were directly comparable to scoring averages from stronger conferences.
 
-That's the mid-major problem in one sentence, and it cuts both ways. My top fifteen included Liberty (13-seed) at second overall, Colgate (14) at fifth, Drake (11) at sixth, UC Santa Barbara (12) at eighth, Abilene Christian (14) at eleventh, Ohio (13) at fourteenth, and Winthrop (12) at fifteenth. Seven of the top fifteen were seeded eleventh or worse.
+The same issue affected many other mid-major teams. My top fifteen included Liberty (a 13-seed) in second place, Colgate (14) in fifth, Drake (11) in sixth, UC Santa Barbara (12) in eighth, Abilene Christian (14) in eleventh, Ohio (13) in fourteenth, and Winthrop (12) in fifteenth. Seven of the top fifteen teams were seeded 11th or lower.
 
-Illinois, a 1-seed, came in seventeenth.
+Illinois, a No. 1 seed, ranked seventeenth.
 
-Ranking a 13-seed second in America isn't a small calibration issue. It's the model announcing that it has no idea who anybody played. Most years that wrecks your bracket. In 2021, with fourteen upsets and mid-majors everywhere, it bought me nine correct upset calls including the two biggest of the first round. The flaw and the highlight reel came from the same place.
+Ranking a 13-seed second in the country points to a basic limitation: the model didn't account for strength of schedule. That usually makes rankings less reliable. In 2021, however, several mid-majors did well, and the model correctly picked nine upsets, including two of the biggest in the first round. Those results came from the same weakness in the model.
 
 ### The Michigan-LSU footnote
 
-At the very bottom of the original script, after the analysis ends, sit six orphaned lines pulling shooting numbers for Michigan and LSU.
+At the bottom of the original script, after the analysis, are six lines that retrieve shooting statistics for Michigan and LSU.
 
-They look like leftover junk until you check the schedule. Michigan played LSU in the round of 32 on March 22, 2021. Those lines are the process in action: two teams pulled up side by side and compared by hand the night before a real game, which is the exact operation this rebuild turns into a function.
+They appear unrelated until you check the schedule: Michigan played LSU in the Round of 32 on March 22, 2021. The lines show how I compared teams by hand before a game. This rebuild turns that comparison into a function.
 
-Run properly, the model gives Michigan a 6.99 edge. Michigan won 86-78.
+The rebuilt model gives Michigan a 6.99-point advantage. Michigan won 86-78.
 
 ---
 
@@ -136,53 +134,53 @@ On that C: when the ODI edge cleared 4 points, the model went 22 of 29 (75.9%). 
 
 ---
 
-## Two Bugs, Five Years Late
+## Two Bugs I Found Later
 
-**The corrplot bug** was cosmetic. The defensive correlation plot handed one matrix five columns and the other four, so the significance stars landed on the wrong cells. R warned me. I didn't read it.
+**The corrplot bug** affected the display, not the analysis. The defensive correlation plot used matrices with different numbers of columns, so the significance stars appeared in the wrong cells. R issued a warning that I missed.
 
-**The effective field goal bug** was not cosmetic. The line computing EFG did arithmetic across two data frames that had been filtered separately and were no longer in the same row order, because `merge()` had quietly re-sorted one of them alphabetically. The result: **64 of the 68 teams had another team's three-point total baked into their shooting efficiency.** Mean error 1.5 percentage points, worst case 7.8.
+**The effective field goal bug** changed the results. The calculation combined two data frames that had been filtered separately and no longer had the same row order. `merge()` had sorted one of them alphabetically. As a result, **64 of the 68 teams had another team's three-point total included in their shooting efficiency.** The average error was 1.5 percentage points, with a maximum of 7.8.
 
 Gonzaga's real EFG is 61.0%. My script had them at 65.0%.
 
-That number should have stopped me cold. A 65% would have been a program-record, era-defining figure, and one look at the column would have caught it. But I never printed the column. Nothing in that script wrote anything to disk, so nothing was ever reviewed. Every result lived in the RStudio plot pane until I closed the window.
+That result should have prompted a closer look. A 65% effective field goal rate would have been extraordinary, and checking the column might have revealed the error. But I never printed it. The script didn't save its results, so I had nothing to review after closing RStudio.
 
 ---
 
 ## What I Didn't Have Yet
 
-For years I've said the missing piece was KenPom and strength of schedule. That's true, and it's also the symptom rather than the disease. Rebuilding this and actually checking what the axes contained turned up something better.
+For years, I thought the main missing pieces were KenPom ratings and strength of schedule. Rebuilding the analysis and checking the component loadings showed that the problem was broader.
 
-**PC1 (20.9% of variance) is offense, exactly as advertised.** Correlates with points per game at +0.94, effective field goal percentage at +0.67, win percentage at +0.77. I read that axis correctly.
+**PC1 (20.9% of variance) reflects offense.** It correlates with points per game at +0.94, effective field goal percentage at +0.67, and win percentage at +0.77. My interpretation of this axis was reasonable.
 
-**PC2 (19.3%) is not defense.** I labelled it defense for five years. It correlates with opponent points per game at +0.70, which is what fooled me, and with *opponent field goal percentage* at **−0.01**. Zero. It has no relationship whatsoever with whether opponents actually shoot well against you.
+**PC2 (19.3%) does not reflect defense.** I called it defense for five years. It correlates with opponent points per game at +0.70, which contributed to my interpretation, but its correlation with *opponent field goal percentage* is **−0.01**. It tells us almost nothing about how well opponents shoot.
 
-PC2 was measuring tempo. High PC2 means possessions: rebounds at both ends, free throws, shots taken and allowed, and lower efficiency. Low PC2 means a grind. The two most extreme low-PC2 teams in the field are Virginia and Loyola Chicago, which is about as on-the-nose as basketball gets. Those were the two most deliberate, defense-first programs in the country that season.
+PC2 was measuring tempo. Higher scores are associated with more possessions, rebounds, free throws, and shots, as well as lower efficiency. Lower scores indicate a slower pace. Virginia and Loyola Chicago had the lowest PC2 scores; both played at a deliberate pace and emphasized defense.
 
-And this is why it stayed hidden. Houston, the team I used to name that axis, really was the best defense in the field. Houston was also a Kelvin Sampson team, which meant it played slowly by design. Elite defense and slow tempo in the same team, landing in the same place on the chart. My anchor sat exactly where a defense axis and a tempo axis would both put it, so it could never tell me which one I was looking at. A fast team with a great defense, or a slow team with a bad one, would have blown the interpretation apart immediately.
+My interpretation held up for so long because Houston, the team I used to label the axis, was both the best defense in the field and a slow-paced team. It landed in a place that seemed consistent with either explanation. Looking at teams with different combinations of pace and defensive strength would have helped distinguish the two.
 
-So the axis was picking up something real. It just wasn't defensive quality; it was pace. Slow teams give up fewer points whether they defend or not.
+The axis did capture a real difference between teams, but it was pace rather than defensive quality. Teams that play at a slower pace tend to allow fewer points, regardless of how well they defend.
 
-Actual defensive quality was living on **PC3**, correlated with opponent field goal percentage at +0.62. That's the component I computed and never plotted.
+**PC3** better reflected defensive quality, with a +0.62 correlation to opponent field goal percentage. I computed this component but never plotted it.
 
-Stated properly, this is what KenPom was for. Adjusted efficiency is measured per 100 possessions and corrected for opponent, which kills both problems with one change: the tempo confusion in PC2, and the strength-of-schedule inflation that put Liberty second in the country. I could feel both holes in 2021 and couldn't name either one.
+This is why adjusted efficiency ratings such as KenPom's are useful: they measure performance per 100 possessions and account for opponents. That would address both the tempo issue in PC2 and the strength-of-schedule problem that helped put Liberty second in my rankings. I was aware of these limitations in 2021 but didn't know how to address them.
 
-There's a third thing the rebuild surfaced, and it's the one I'd have most wanted to know at the time. The correlation plot with wins and losses as columns, the one the original script drew and I never really read, says that shooting stats connect to winning about twice as strongly as anything defensive. Field goals made per game runs +0.47 against wins and −0.56 against losses. Opponent field goal percentage manages −0.26 against win percentage. My model weighted offense and defense equally while the data was telling me, in two columns, that it understood one far better than the other.
+The rebuild also showed that shooting statistics were more strongly associated with winning than the defensive statistics I examined. Field goals made per game correlates with wins at +0.47 and losses at −0.56. Opponent field goal percentage has a −0.26 correlation with win percentage. My model gave offense and defense equal weight, even though its inputs appeared to describe offense more clearly.
 
 ---
 
 ## Lessons That Became 2026
 
-1. **Adjust for pace and opponent, or your axes will lie to you.** This is the single biggest reason the 2026 model runs on KenPom and Barttorvik efficiency data rather than raw per-game averages.
+1. **Adjust for pace and opponent.** This is why the 2026 model uses KenPom and Barttorvik efficiency data instead of raw per-game averages.
 
-2. **Score your predictions.** Five years without a number. The 2026 project has a backtester, a game-by-game ledger, and a post-mortem published the week the tournament ended.
+2. **Score your predictions.** I went five years without measuring the model's results. The 2026 project includes a backtester, a game-by-game ledger, and a post-mortem published the week the tournament ended.
 
-3. **If it isn't saved, it wasn't checked.** A bug touching 94% of the rows survived because every result disappeared when I closed a window.
+3. **Save your results.** A bug affecting 94% of the rows went unnoticed because I didn't save anything to review.
 
-4. **A model that can't express uncertainty will be confidently wrong at the worst possible moment.** 1.52 and 10.42 looked identical. The 2026 model outputs probabilities, which is why its post-mortem can discuss an 18.7% champion instead of a pick that failed.
+4. **Account for uncertainty.** The model gave advantages of 1.52 and 10.42 the same meaning, even though one suggested a close game and the other a more confident pick. The 2026 model outputs probabilities, which makes it possible to describe a champion's chances rather than just report a pick.
 
-5. **Check what a variable measures before you name it.** I called PC2 defense because the loadings looked defensive at a glance. One correlation would have caught it. Confirming what a feature does rather than trusting its label is the most portable thing this project taught me.
+5. **Check what a variable measures before naming it.** I called PC2 defense based on a quick look at its loadings. Checking its correlations would have shown that this interpretation was wrong.
 
-6. **Sometimes your worst flaw makes your best pick.** Overrating mid-majors sank the record and produced the best calls of the tournament. That tension doesn't resolve, it gets priced. The 2026 model has a dedicated upset-leverage component because of what happened here.
+6. **A model's weaknesses can sometimes lead to a correct pick.** Overrating mid-majors hurt the overall record but also led to some of the model's best upset picks. The 2026 model accounts for upset potential separately.
 
 ---
 
@@ -199,7 +197,7 @@ There's a third thing the rebuild surfaced, and it's the one I'd have most wante
 | **Pipeline** | `R/00_setup.R` → `01_load_stats.R` → `02_pca_analysis.R` → `03_bracket_picks.R` |
 | **Original** | [`archives/NCAA_2021_original.R`](./archives/NCAA_2021_original.R), untouched |
 
-One thing I deliberately left alone: win-loss record (`W`, `L`, `Pct_W_L`) is still among the PCA inputs, exactly as it was in 2021. Feeding wins into a model whose job is predicting wins is circular, and it inflates how good PC1 looks; `Pct_W_L` loads on it at +0.77. Taking it out would make this a different analysis than the one I actually ran in 2021, so it stays. It's on the list of things later versions fixed.
+I left win-loss record (`W`, `L`, `Pct_W_L`) among the PCA inputs, as it was in 2021. That means the rankings partly reflect regular-season results; `Pct_W_L` has a +0.77 loading on PC1. Removing those variables would change this reconstruction, so I kept them here. Later versions of the model no longer use them.
 
 ---
 
